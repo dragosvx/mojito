@@ -9,20 +9,8 @@ import com.box.l10n.mojito.entity.TM;
 import com.box.l10n.mojito.entity.TMTextUnit;
 import com.box.l10n.mojito.entity.TMTextUnitCurrentVariant;
 import com.box.l10n.mojito.entity.TMTextUnitVariant;
-import com.box.l10n.mojito.okapi.AbstractImportTranslationsStep;
-import com.box.l10n.mojito.okapi.CheckForDoNotTranslateStep;
-import com.box.l10n.mojito.okapi.FilterEventsToInMemoryRawDocumentStep;
-import com.box.l10n.mojito.okapi.ImportTranslationsByIdStep;
-import com.box.l10n.mojito.okapi.ImportTranslationsByMd5Step;
-import com.box.l10n.mojito.okapi.ImportTranslationsFromLocalizedAssetStep;
+import com.box.l10n.mojito.okapi.*;
 import com.box.l10n.mojito.okapi.ImportTranslationsFromLocalizedAssetStep.StatusForSourceEqTarget;
-import com.box.l10n.mojito.okapi.ImportTranslationsStepAnnotation;
-import com.box.l10n.mojito.okapi.ImportTranslationsWithTranslationKitStep;
-import com.box.l10n.mojito.okapi.InheritanceMode;
-import com.box.l10n.mojito.okapi.POExtraPluralAnnotation;
-import com.box.l10n.mojito.okapi.RawDocument;
-import com.box.l10n.mojito.okapi.TranslateStep;
-import com.box.l10n.mojito.okapi.XLIFFWriter;
 import com.box.l10n.mojito.okapi.qualitycheck.Parameters;
 import com.box.l10n.mojito.okapi.qualitycheck.QualityCheckStep;
 import com.box.l10n.mojito.rest.asset.FilterConfigIdOverride;
@@ -709,7 +697,12 @@ public class TMService {
 
         driver.addStep(new RawDocumentToFilterEventsStep());
         driver.addStep(new CheckForDoNotTranslateStep());
-        driver.addStep(new TranslateStep(asset, repositoryLocale, InheritanceMode.USE_PARENT));
+        if (bcp47Tag.equals("en-x-psaccent")) {
+            driver.addStep(new PseudoLocalizeStep());
+        } else {
+            driver.addStep(new TranslateStep(asset, repositoryLocale, InheritanceMode.USE_PARENT));
+        }
+
 
         //TODO(P1) see assetExtractor comments
         logger.debug("Adding all supported filters to the pipeline driver");
