@@ -176,21 +176,6 @@ public class POFilter extends net.sf.okapi.filters.po.POFilter {
         }
     }
 
-    private void removeExtraPluralIfTextUnitIsSecondPluralForm(ITextUnit textUnit) {
-
-        if (needsExtraPluralForm && textUnit.getName().endsWith("-1")) {
-            ITextUnit clone = textUnit.clone();
-            clone.setName(clone.getName().replace("-1", "-2"));
-            GenericSkeleton genericSkeleton = (GenericSkeleton) clone.getSkeleton();
-            StringBuilder sb = genericSkeleton.getFirstPart().getData();
-            String str = sb.toString().replace("msgstr[1]", "msgstr[2]");
-            sb.replace(0, sb.length(), str);
-
-            addContextToTextUnitName(clone);
-            extraPluralEvent = new Event(EventType.TEXT_UNIT, clone);
-        }
-    }
-
     /**
      * If context is present, add it to the text unit name. We keep the
      * generated ID by Okapi for prefix of the text unit name allows to
@@ -225,7 +210,7 @@ public class POFilter extends net.sf.okapi.filters.po.POFilter {
 
     private boolean needsToRemoveExtraPluralForm(LocaleId localeId) {
         boolean required = false;
-        if (targetLocale != null && !LocaleId.EMPTY.equals(targetLocale)) {
+        if (localeId != null && !LocaleId.EMPTY.equals(localeId)) {
             ULocale ulocale = ULocale.forLanguageTag(localeId.toBCP47());
             PluralRules pluralRules = PluralRules.forLocale(ulocale);
             required = pluralRules.getKeywords().size() == 1;

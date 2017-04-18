@@ -177,7 +177,7 @@ public class AssetExtractionServiceTest extends ServiceTestBase {
         assertEquals("Test label", assetTextUnits.get(0).getComment());
 
     }
-    
+
     @Test
     public void testResw() throws Exception {
 
@@ -203,7 +203,7 @@ public class AssetExtractionServiceTest extends ServiceTestBase {
         assertEquals("Test label", assetTextUnits.get(0).getComment());
 
     }
-    
+
     @Test
     public void testAndroidStrings() throws Exception {
 
@@ -226,7 +226,7 @@ public class AssetExtractionServiceTest extends ServiceTestBase {
         assertEquals("Test label", assetTextUnits.get(0).getComment());
 
     }
-    
+
     @Test
     public void testAndroidStringsWithSpecialCharacters() throws Exception {
 
@@ -248,7 +248,7 @@ public class AssetExtractionServiceTest extends ServiceTestBase {
         assertEquals("Make sure you'd \"escaped\" <b>special</b> characters like quotes & ampersands.\n", assetTextUnits.get(0).getContent());
 
     }
-    
+
     @Test
     public void testAndroidStringsArray() throws Exception {
 
@@ -270,11 +270,11 @@ public class AssetExtractionServiceTest extends ServiceTestBase {
         List<AssetTextUnit> assetTextUnits = assetTextUnitRepository.findByAssetExtraction(processedAsset.getLastSuccessfulAssetExtraction());
 
         assertEquals("Processing should have extracted 3 text units", 3, assetTextUnits.size());
-        
+
         assertEquals("$x_Collaborators_0", assetTextUnits.get(0).getName());
         assertEquals("No people", assetTextUnits.get(0).getContent());
         assertEquals("Reference to number of collaborators in folders", assetTextUnits.get(0).getComment());
-        
+
         assertEquals("$x_Collaborators_1", assetTextUnits.get(1).getName());
         assertEquals("1 person", assetTextUnits.get(1).getContent());
         assertEquals("Reference to number of collaborators in folders", assetTextUnits.get(1).getComment());
@@ -283,7 +283,7 @@ public class AssetExtractionServiceTest extends ServiceTestBase {
         assertEquals("%1$d people", assetTextUnits.get(2).getContent());
         assertEquals("Reference to number of collaborators in folders", assetTextUnits.get(2).getComment());
     }
-    
+
     @Test
     public void testAndroidStringsArrayWithEmptyItem() throws Exception {
 
@@ -305,14 +305,14 @@ public class AssetExtractionServiceTest extends ServiceTestBase {
         List<AssetTextUnit> assetTextUnits = assetTextUnitRepository.findByAssetExtraction(processedAsset.getLastSuccessfulAssetExtraction());
 
         assertEquals("Processing should have extracted 2 text units", 2, assetTextUnits.size());
-        
+
         assertEquals("N_items_failed_to_move_1", assetTextUnits.get(0).getName());
         assertEquals("1 item failed to move", assetTextUnits.get(0).getContent());
 
         assertEquals("N_items_failed_to_move_2", assetTextUnits.get(1).getName());
         assertEquals("%1$d items failed to move", assetTextUnits.get(1).getContent());
     }
-    
+
     @Test
     public void testAndroidStringsPlural() throws Exception {
 
@@ -334,8 +334,8 @@ public class AssetExtractionServiceTest extends ServiceTestBase {
 
         List<AssetTextUnit> assetTextUnits = assetTextUnitRepository.findByAssetExtraction(processedAsset.getLastSuccessfulAssetExtraction());
 
-        assertEquals("Processing should have extracted 4 text units", 4, assetTextUnits.size());
-        
+        assertEquals("Processing should have extracted 6 text units", 6, assetTextUnits.size());
+
         assertEquals("numberOfCollaborators_zero", assetTextUnits.get(0).getName());
         assertEquals("No people", assetTextUnits.get(0).getContent());
         assertEquals("Example of plurals", assetTextUnits.get(0).getComment());
@@ -343,16 +343,164 @@ public class AssetExtractionServiceTest extends ServiceTestBase {
         assertEquals("numberOfCollaborators_one", assetTextUnits.get(1).getName());
         assertEquals("1 person", assetTextUnits.get(1).getContent());
         assertEquals("Example of plurals", assetTextUnits.get(1).getComment());
-        
-        assertEquals("numberOfCollaborators_few", assetTextUnits.get(2).getName());
-        assertEquals("few people", assetTextUnits.get(2).getContent());
+
+        assertEquals("numberOfCollaborators_two", assetTextUnits.get(2).getName());
+        assertEquals("%1$d people", assetTextUnits.get(2).getContent());
         assertEquals("Example of plurals", assetTextUnits.get(2).getComment());
-        
-        assertEquals("numberOfCollaborators_other", assetTextUnits.get(3).getName());
-        assertEquals("%1$d people", assetTextUnits.get(3).getContent());
+
+        assertEquals("numberOfCollaborators_few", assetTextUnits.get(3).getName());
+        assertEquals("few people", assetTextUnits.get(3).getContent());
         assertEquals("Example of plurals", assetTextUnits.get(3).getComment());
+
+        assertEquals("numberOfCollaborators_many", assetTextUnits.get(4).getName());
+        assertEquals("%1$d people", assetTextUnits.get(4).getContent());
+        assertEquals("Example of plurals", assetTextUnits.get(4).getComment());
+
+        assertEquals("numberOfCollaborators_other", assetTextUnits.get(5).getName());
+        assertEquals("%1$d people", assetTextUnits.get(5).getContent());
+        assertEquals("Example of plurals", assetTextUnits.get(5).getComment());
     }
-    
+
+    @Test
+    public void testAndroidStringsPluralExtra() throws Exception {
+
+        Repository repository = repositoryService.createRepository(testIdWatcher.getEntityName("repository"));
+
+        String content = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
+                + "<resources>\n"
+                + "  <!-- Example of plurals -->\n"
+                + "  <plurals name=\"numberOfCollaborators\">\n"
+                + "    <item quantity=\"one\">1 person</item>\n"
+                + "    <item quantity=\"other\">%1$d people</item>\n"
+                + "  </plurals>\n"
+                + "</resources>";
+        Asset asset = assetService.createAsset(repository.getId(), content, "path/to/fake/res/strings.xml");
+
+        PollableFuture<Asset> processResult = assetExtractionService.processAsset(asset.getId(), null, null, PollableTask.INJECT_CURRENT_TASK);
+        Asset processedAsset = processResult.get();
+
+        List<AssetTextUnit> assetTextUnits = assetTextUnitRepository.findByAssetExtraction(processedAsset.getLastSuccessfulAssetExtraction());
+
+        assertEquals("Processing should have extracted 6 text units", 6, assetTextUnits.size());
+
+        int i = 0;
+        assertEquals("numberOfCollaborators_zero", assetTextUnits.get(i).getName());
+        assertEquals("%1$d people", assetTextUnits.get(i).getContent());
+        assertEquals("Example of plurals", assetTextUnits.get(i).getComment());
+
+        i++;
+        assertEquals("numberOfCollaborators_one", assetTextUnits.get(i).getName());
+        assertEquals("1 person", assetTextUnits.get(i).getContent());
+        assertEquals("Example of plurals", assetTextUnits.get(i).getComment());
+
+        i++;
+        assertEquals("numberOfCollaborators_two", assetTextUnits.get(i).getName());
+        assertEquals("%1$d people", assetTextUnits.get(i).getContent());
+        assertEquals("Example of plurals", assetTextUnits.get(i).getComment());
+
+        i++;
+        assertEquals("numberOfCollaborators_few", assetTextUnits.get(i).getName());
+        assertEquals("%1$d people", assetTextUnits.get(i).getContent());
+        assertEquals("Example of plurals", assetTextUnits.get(i).getComment());
+
+        i++;
+        assertEquals("numberOfCollaborators_many", assetTextUnits.get(i).getName());
+        assertEquals("%1$d people", assetTextUnits.get(i).getContent());
+        assertEquals("Example of plurals", assetTextUnits.get(i).getComment());
+
+        i++;
+        assertEquals("numberOfCollaborators_other", assetTextUnits.get(i).getName());
+        assertEquals("%1$d people", assetTextUnits.get(i).getContent());
+        assertEquals("Example of plurals", assetTextUnits.get(i).getComment());
+    }
+
+    @Test
+    public void testAndroidStringsPluralExtraOpeningAndClosing() throws Exception {
+
+        Repository repository = repositoryService.createRepository(testIdWatcher.getEntityName("repository"));
+
+        String content = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
+                + "<resources>\n"
+                + "  <!-- Example of plurals -->\n"
+                + "  <plurals name=\"numberOfCollaborators\">\n"
+                + "    <item quantity=\"one\">1 person</item>\n"
+                + "    <item quantity=\"other\">%1$d people</item>\n"
+                + "  </plurals>\n"
+                + "  <!-- Example of plurals2 -->\n"
+                + "  <plurals name=\"numberOfCollaborators2\">\n"
+                + "    <item quantity=\"other\">%1$d people2</item>\n"
+                + "  </plurals>\n"
+                + "</resources>";
+        Asset asset = assetService.createAsset(repository.getId(), content, "path/to/fake/res/strings.xml");
+
+        PollableFuture<Asset> processResult = assetExtractionService.processAsset(asset.getId(), null, null, PollableTask.INJECT_CURRENT_TASK);
+        Asset processedAsset = processResult.get();
+
+        List<AssetTextUnit> assetTextUnits = assetTextUnitRepository.findByAssetExtraction(processedAsset.getLastSuccessfulAssetExtraction());
+
+        assertEquals("Processing should have extracted 6 text units", 12, assetTextUnits.size());
+
+        int i = 0;
+        assertEquals("numberOfCollaborators_zero", assetTextUnits.get(i).getName());
+        assertEquals("%1$d people", assetTextUnits.get(i).getContent());
+        assertEquals("Example of plurals", assetTextUnits.get(i).getComment());
+
+        i++;
+        assertEquals("numberOfCollaborators_one", assetTextUnits.get(i).getName());
+        assertEquals("1 person", assetTextUnits.get(i).getContent());
+        assertEquals("Example of plurals", assetTextUnits.get(i).getComment());
+
+        i++;
+        assertEquals("numberOfCollaborators_two", assetTextUnits.get(i).getName());
+        assertEquals("%1$d people", assetTextUnits.get(i).getContent());
+        assertEquals("Example of plurals", assetTextUnits.get(i).getComment());
+
+        i++;
+        assertEquals("numberOfCollaborators_few", assetTextUnits.get(i).getName());
+        assertEquals("%1$d people", assetTextUnits.get(i).getContent());
+        assertEquals("Example of plurals", assetTextUnits.get(i).getComment());
+
+        i++;
+        assertEquals("numberOfCollaborators_many", assetTextUnits.get(i).getName());
+        assertEquals("%1$d people", assetTextUnits.get(i).getContent());
+        assertEquals("Example of plurals", assetTextUnits.get(i).getComment());
+
+        i++;
+        assertEquals("numberOfCollaborators_other", assetTextUnits.get(i).getName());
+        assertEquals("%1$d people", assetTextUnits.get(i).getContent());
+        assertEquals("Example of plurals", assetTextUnits.get(i).getComment());
+ 
+        i++;
+        assertEquals("numberOfCollaborators2_zero", assetTextUnits.get(i).getName());
+        assertEquals("%1$d people2", assetTextUnits.get(i).getContent());
+        assertEquals("Example of plurals2", assetTextUnits.get(i).getComment());
+
+        i++;
+        assertEquals("numberOfCollaborators2_one", assetTextUnits.get(i).getName());
+        assertEquals("%1$d people2", assetTextUnits.get(i).getContent());
+        assertEquals("Example of plurals2", assetTextUnits.get(i).getComment());
+
+        i++;
+        assertEquals("numberOfCollaborators2_two", assetTextUnits.get(i).getName());
+        assertEquals("%1$d people2", assetTextUnits.get(i).getContent());
+        assertEquals("Example of plurals2", assetTextUnits.get(i).getComment());
+
+        i++;
+        assertEquals("numberOfCollaborators2_few", assetTextUnits.get(i).getName());
+        assertEquals("%1$d people2", assetTextUnits.get(i).getContent());
+        assertEquals("Example of plurals2", assetTextUnits.get(i).getComment());
+
+        i++;
+        assertEquals("numberOfCollaborators2_many", assetTextUnits.get(i).getName());
+        assertEquals("%1$d people2", assetTextUnits.get(i).getContent());
+        assertEquals("Example of plurals2", assetTextUnits.get(i).getComment());
+
+        i++;
+        assertEquals("numberOfCollaborators2_other", assetTextUnits.get(i).getName());
+        assertEquals("%1$d people2", assetTextUnits.get(i).getContent());
+        assertEquals("Example of plurals2", assetTextUnits.get(i).getComment());
+    }
+
     @Test
     public void testMacStrings() throws Exception {
 
@@ -558,8 +706,8 @@ public class AssetExtractionServiceTest extends ServiceTestBase {
         assertEquals("Hello, %1$s! You have <b>%2$d new messages</b>.", assetTextUnits.get(0).getContent());
 
     }
-    
-     @Test
+
+    @Test
     public void testAndroidStringsWithDescriptionInXMLComments() throws Exception {
 
         Repository repository = repositoryService.createRepository(testIdWatcher.getEntityName("repository"));
@@ -586,11 +734,11 @@ public class AssetExtractionServiceTest extends ServiceTestBase {
         assertEquals("hello", assetTextUnits.get(0).getName());
         assertEquals("Hello", assetTextUnits.get(0).getContent());
         assertEquals("comment for hello", assetTextUnits.get(0).getComment());
-        
+
         assertEquals("hello2", assetTextUnits.get(1).getName());
         assertEquals("Hello2", assetTextUnits.get(1).getContent());
         assertEquals("comment for hello2", assetTextUnits.get(1).getComment());
-        
+
         assertEquals("hello3", assetTextUnits.get(2).getName());
         assertEquals("Hello3", assetTextUnits.get(2).getContent());
         assertEquals("line 1 line 2 line 3", assetTextUnits.get(2).getComment());

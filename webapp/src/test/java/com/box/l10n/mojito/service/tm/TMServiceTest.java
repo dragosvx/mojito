@@ -738,6 +738,56 @@ public class TMServiceTest extends ServiceTestBase {
         assertEquals(expectedLocalizedAsset, localizedAsset);
     }
 
+    @Test
+    public void testLocalizeAndroidStringsPlural() throws Exception {
+
+        Repository repo = repositoryService.createRepository(testIdWatcher.getEntityName("repository"));
+        RepositoryLocale repoLocale;
+        try {
+            repoLocale = repositoryService.addRepositoryLocale(repo, "ja-JP");
+        } catch (RepositoryLocaleCreationException e) {
+            throw new RuntimeException(e);
+        }
+
+        String assetContent = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
+                + "<resources>\n"
+                + "  <!-- Example of plurals -->\n"
+                + "  <plurals name=\"numberOfCollaborators\">\n"
+                + "    <item quantity=\"other\">%1$d people</item>\n"
+                + "  </plurals>\n"
+                + "  <!-- Example2 of plurals -->\n"
+                + "  <plurals name=\"numberOfCollaborators2\">\n"
+                + "    <item quantity=\"other\">%1$d people</item>\n"
+                + "  </plurals>\n"
+                + "</resources>";
+        String expectedLocalizedAsset = "";
+        asset = assetService.createAsset(repo.getId(), assetContent, "res/values/strings.xml");
+        asset = assetRepository.findOne(asset.getId());
+        assetId = asset.getId();
+        tmId = repo.getTm().getId();
+
+        PollableFuture<Asset> assetResult = assetService.addOrUpdateAssetAndProcessIfNeeded(repo.getId(), assetContent, asset.getPath(), null);
+        try {
+            pollableTaskService.waitForPollableTask(assetResult.getPollableTask().getId());
+        } catch (PollableTaskException | InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        assetResult.get();
+
+        TextUnitSearcherParameters textUnitSearcherParameters = new TextUnitSearcherParameters();
+        textUnitSearcherParameters.setRepositoryIds(repo.getId());
+        textUnitSearcherParameters.setStatusFilter(StatusFilter.FOR_TRANSLATION);
+        List<TextUnitDTO> textUnitDTOs = textUnitSearcher.search(textUnitSearcherParameters);
+        for (TextUnitDTO textUnitDTO : textUnitDTOs) {
+            logger.debug("source=[{}]", textUnitDTO.getSource());
+            assertEquals("Hello, %1$s! You have <b>%2$d new messages</b>.", textUnitDTO.getSource());
+        }
+
+        String localizedAsset = tmService.generateLocalized(asset, assetContent, repoLocale, "ja-JP", null);
+        logger.debug("localized=\n{}", localizedAsset);
+        assertEquals(expectedLocalizedAsset, localizedAsset);
+    }
+
     /**
      * This test is to test AndroidStrings array with empty item
      *
@@ -1174,8 +1224,8 @@ public class TMServiceTest extends ServiceTestBase {
                 + "#. Test plural okapi bug\n"
                 + "#: file.js:24\n"
                 + "msgctxt \"testpluralokapibug\"\n"
-                + "msgid \"test okapi bug\"\n" 
-                + "msgstr \"\"\n" 
+                + "msgid \"test okapi bug\"\n"
+                + "msgstr \"\"\n"
                 + "";
         asset = assetService.createAsset(repository.getId(), assetContent, "messages.pot");
         asset = assetRepository.findOne(asset.getId());
@@ -1221,8 +1271,8 @@ public class TMServiceTest extends ServiceTestBase {
                 + "#. Test plural okapi bug\n"
                 + "#: file.js:24\n"
                 + "msgctxt \"testpluralokapibug\"\n"
-                + "msgid \"test okapi bug\"\n" 
-                + "msgstr \"jp test okapi bug\"\n" 
+                + "msgid \"test okapi bug\"\n"
+                + "msgstr \"jp test okapi bug\"\n"
                 + "\n"
                 + "";
         tmService.importLocalizedAsset(asset, localizedAssetContent, repoLocale, StatusForSourceEqTarget.APPROVED, null);

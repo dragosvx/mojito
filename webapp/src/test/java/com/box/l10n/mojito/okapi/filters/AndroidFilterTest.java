@@ -1,5 +1,7 @@
 package com.box.l10n.mojito.okapi.filters;
 
+import java.util.List;
+import net.sf.okapi.common.LocaleId;
 import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 
@@ -34,6 +36,14 @@ public class AndroidFilterTest {
         String expResult = "line 1 line 2 line 3";
         String result = instance.getNoteFromXMLCommentsInSkeleton(skeleton);
         assertEquals(expResult, result);
+    }
+
+    @Test
+    public void testGetPluralFormsForTargetLocale() {
+        AndroidFilter instance = new AndroidFilter();
+        List<String> pluralForms = instance.getPluralForms(LocaleId.JAPANESE);
+        assertEquals(1, pluralForms.size());
+        assertEquals("other", pluralForms.get(0));
     }
 
 }
