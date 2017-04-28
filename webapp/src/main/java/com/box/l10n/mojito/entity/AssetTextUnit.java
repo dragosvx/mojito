@@ -54,6 +54,9 @@ public class AssetTextUnit extends AuditableEntity {
     @JoinColumn(name = BaseEntity.CreatedByUserColumnName, foreignKey = @ForeignKey(name = "FK__ASSET_TEXT_UNIT__USER__ID"))
     protected User createdByUser;
 
+    @Column(name = "pluralForm")
+    protected String pluralForm;
+
     public User getCreatedByUser() {
         return createdByUser;
     }
@@ -109,4 +112,13 @@ public class AssetTextUnit extends AuditableEntity {
     public void setAssetExtraction(AssetExtraction assetExtraction) {
         this.assetExtraction = assetExtraction;
     }
+
+    public String getPluralForm() {
+        return pluralForm;
+    }
+
+    public void setPuralForm(String puralForm) {
+        this.pluralForm = puralForm;
+    }
+
 }

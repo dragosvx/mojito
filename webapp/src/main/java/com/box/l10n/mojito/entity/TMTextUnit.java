@@ -71,6 +71,9 @@ public class TMTextUnit extends SettableAuditableEntity {
     @JoinColumn(name = BaseEntity.CreatedByUserColumnName, foreignKey = @ForeignKey(name = "FK__TM_TEXT_UNIT__USER__ID"))
     protected User createdByUser;
 
+    @Column(name = "pluralForm")
+    protected String pluralForm;
+
     public User getCreatedByUser() {
         return createdByUser;
     }
@@ -142,4 +145,13 @@ public class TMTextUnit extends SettableAuditableEntity {
     public void setTm(TM tm) {
         this.tm = tm;
     }
+
+    public String getPluralForm() {
+        return pluralForm;
+    }
+
+    public void setPluralForm(String pluralForm) {
+        this.pluralForm = pluralForm;
+    }
+
 }

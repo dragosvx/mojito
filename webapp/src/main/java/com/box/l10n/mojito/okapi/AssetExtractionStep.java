@@ -1,5 +1,6 @@
 package com.box.l10n.mojito.okapi;
 
+import com.box.l10n.mojito.okapi.filters.PluralFormAnnotation;
 import com.box.l10n.mojito.service.assetExtraction.AssetExtractionService;
 import java.util.HashSet;
 import java.util.Set;
@@ -68,7 +69,14 @@ public class AssetExtractionStep extends AbstractMd5ComputationStep {
         if (textUnit.isTranslatable()) {
             if (!assetTextUnitMD5s.contains(md5)) {
                 assetTextUnitMD5s.add(md5);
-                assetExtractionService.createAssetTextUnit(assetExtractionId, name, source, comments);
+
+                PluralFormAnnotation annotation = textUnit.getAnnotation(PluralFormAnnotation.class);
+                String pluralForm = null;
+                if (annotation != null) {
+                    pluralForm = annotation.getForm();
+                }
+
+                assetExtractionService.createAssetTextUnit(assetExtractionId, name, source, comments, pluralForm);
             } else {
                 logger.debug("Duplicate assetTextUnit found, skip it");
             }

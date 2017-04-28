@@ -27,7 +27,6 @@ import com.box.l10n.mojito.okapi.XLIFFWriter;
 import com.box.l10n.mojito.okapi.qualitycheck.Parameters;
 import com.box.l10n.mojito.okapi.qualitycheck.QualityCheckStep;
 import com.box.l10n.mojito.rest.asset.FilterConfigIdOverride;
-import com.box.l10n.mojito.rest.asset.SourceAsset;
 import com.box.l10n.mojito.service.WordCountService;
 import com.box.l10n.mojito.service.assetExtraction.extractor.AssetExtractor;
 import com.box.l10n.mojito.service.assetintegritychecker.integritychecker.IntegrityCheckStep;
@@ -115,7 +114,7 @@ public class TMService {
      */
     @Transactional
     public TMTextUnit addTMTextUnit(Long tmId, Long assetId, String name, String content, String comment) {
-        return addTMTextUnit(tmId, assetId, name, content, comment, null);
+        return addTMTextUnit(tmId, assetId, name, content, comment, null, null);
     }
 
     /**
@@ -134,7 +133,7 @@ public class TMService {
      * invalid
      */
     @Transactional
-    public TMTextUnit addTMTextUnit(Long tmId, Long assetId, String name, String content, String comment, DateTime createdDate) {
+    public TMTextUnit addTMTextUnit(Long tmId, Long assetId, String name, String content, String comment, DateTime createdDate, String puralForm) {
 
         logger.debug("Add TMTextUnit in tmId: {} with name: {}, content: {}, comment: {}", tmId, name, content, comment);
         TMTextUnit tmTextUnit = new TMTextUnit();
@@ -149,6 +148,7 @@ public class TMService {
         tmTextUnit.setWordCount(wordCountService.getEnglishWordCount(content));
         tmTextUnit.setContentMd5(DigestUtils.md5Hex(content));
         tmTextUnit.setCreatedDate(createdDate);
+        tmTextUnit.setPluralForm(puralForm);
 
         tmTextUnit = tmTextUnitRepository.save(tmTextUnit);
         logger.trace("TMTextUnit saved");

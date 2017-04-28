@@ -1,0 +1,1101 @@
+[{
+        "id": 1,
+        "createdDate": 1493398146000,
+        "name": "android",
+        "description": "",
+        "repositoryLocales": [{
+                "id": 23,
+                "locale": {
+                    "id": 133,
+                    "bcp47Tag": "sv-SE"
+                },
+                "toBeFullyTranslated": true,
+                "parentLocale": {
+                    "id": 1,
+                    "locale": {
+                        "id": 21,
+                        "bcp47Tag": "en"
+                    },
+                    "toBeFullyTranslated": false,
+                    "parentLocale": null
+                }
+            }, {
+                "id": 12,
+                "locale": {
+                    "id": 17,
+                    "bcp47Tag": "de-DE"
+                },
+                "toBeFullyTranslated": true,
+                "parentLocale": {
+                    "id": 1,
+                    "locale": {
+                        "id": 21,
+                        "bcp47Tag": "en"
+                    },
+                    "toBeFullyTranslated": false,
+                    "parentLocale": null
+                }
+            }, {
+                "id": 20,
+                "locale": {
+                    "id": 117,
+                    "bcp47Tag": "pl-PL"
+                },
+                "toBeFullyTranslated": true,
+                "parentLocale": {
+                    "id": 1,
+                    "locale": {
+                        "id": 21,
+                        "bcp47Tag": "en"
+                    },
+                    "toBeFullyTranslated": false,
+                    "parentLocale": null
+                }
+            }, {
+                "id": 6,
+                "locale": {
+                    "id": 285,
+                    "bcp47Tag": "el-GR"
+                },
+                "toBeFullyTranslated": true,
+                "parentLocale": {
+                    "id": 1,
+                    "locale": {
+                        "id": 21,
+                        "bcp47Tag": "en"
+                    },
+                    "toBeFullyTranslated": false,
+                    "parentLocale": null
+                }
+            }, {
+                "id": 22,
+                "locale": {
+                    "id": 633,
+                    "bcp47Tag": "ro-RO"
+                },
+                "toBeFullyTranslated": true,
+                "parentLocale": {
+                    "id": 1,
+                    "locale": {
+                        "id": 21,
+                        "bcp47Tag": "en"
+                    },
+                    "toBeFullyTranslated": false,
+                    "parentLocale": null
+                }
+            }, {
+                "id": 15,
+                "locale": {
+                    "id": 681,
+                    "bcp47Tag": "sk-SK"
+                },
+                "toBeFullyTranslated": true,
+                "parentLocale": {
+                    "id": 1,
+                    "locale": {
+                        "id": 21,
+                        "bcp47Tag": "en"
+                    },
+                    "toBeFullyTranslated": false,
+                    "parentLocale": null
+                }
+            }, {
+                "id": 21,
+                "locale": {
+                    "id": 617,
+                    "bcp47Tag": "pt-PT"
+                },
+                "toBeFullyTranslated": true,
+                "parentLocale": {
+                    "id": 1,
+                    "locale": {
+                        "id": 21,
+                        "bcp47Tag": "en"
+                    },
+                    "toBeFullyTranslated": false,
+                    "parentLocale": null
+                }
+            }, {
+                "id": 11,
+                "locale": {
+                    "id": 493,
+                    "bcp47Tag": "hu-HU"
+                },
+                "toBeFullyTranslated": true,
+                "parentLocale": {
+                    "id": 1,
+                    "locale": {
+                        "id": 21,
+                        "bcp47Tag": "en"
+                    },
+                    "toBeFullyTranslated": false,
+                    "parentLocale": null
+                }
+            }, {
+                "id": 25,
+                "locale": {
+                    "id": 737,
+                    "bcp47Tag": "tl-PH"
+                },
+                "toBeFullyTranslated": true,
+                "parentLocale": {
+                    "id": 1,
+                    "locale": {
+                        "id": 21,
+                        "bcp47Tag": "en"
+                    },
+                    "toBeFullyTranslated": false,
+                    "parentLocale": null
+                }
+            }, {
+                "id": 29,
+                "locale": {
+                    "id": 765,
+                    "bcp47Tag": "vi-VN"
+                },
+                "toBeFullyTranslated": true,
+                "parentLocale": {
+                    "id": 1,
+                    "locale": {
+                        "id": 21,
+                        "bcp47Tag": "en"
+                    },
+                    "toBeFullyTranslated": false,
+                    "parentLocale": null
+                }
+            }, {
+                "id": 27,
+                "locale": {
+                    "id": 9,
+                    "bcp47Tag": "da-DK"
+                },
+                "toBeFullyTranslated": true,
+                "parentLocale": {
+                    "id": 1,
+                    "locale": {
+                        "id": 21,
+                        "bcp47Tag": "en"
+                    },
+                    "toBeFullyTranslated": false,
+                    "parentLocale": null
+                }
+            }, {
+                "id": 7,
+                "locale": {
+                    "id": 101,
+                    "bcp47Tag": "nl-NL"
+                },
+                "toBeFullyTranslated": true,
+                "parentLocale": {
+                    "id": 1,
+                    "locale": {
+                        "id": 21,
+                        "bcp47Tag": "en"
+                    },
+                    "toBeFullyTranslated": false,
+                    "parentLocale": null
+                }
+            }, {
+                "id": 13,
+                "locale": {
+                    "id": 85,
+                    "bcp47Tag": "ko-KR"
+                },
+                "toBeFullyTranslated": true,
+                "parentLocale": {
+                    "id": 1,
+                    "locale": {
+                        "id": 21,
+                        "bcp47Tag": "en"
+                    },
+                    "toBeFullyTranslated": false,
+                    "parentLocale": null
+                }
+            }, {
+                "id": 30,
+                "locale": {
+                    "id": 25,
+                    "bcp47Tag": "en-GB"
+                },
+                "toBeFullyTranslated": true,
+                "parentLocale": {
+                    "id": 1,
+                    "locale": {
+                        "id": 21,
+                        "bcp47Tag": "en"
+                    },
+                    "toBeFullyTranslated": false,
+                    "parentLocale": null
+                }
+            }, {
+                "id": 5,
+                "locale": {
+                    "id": 573,
+                    "bcp47Tag": "ms-MY"
+                },
+                "toBeFullyTranslated": true,
+                "parentLocale": {
+                    "id": 1,
+                    "locale": {
+                        "id": 21,
+                        "bcp47Tag": "en"
+                    },
+                    "toBeFullyTranslated": false,
+                    "parentLocale": null
+                }
+            }, {
+                "id": 28,
+                "locale": {
+                    "id": 57,
+                    "bcp47Tag": "fr-FR"
+                },
+                "toBeFullyTranslated": true,
+                "parentLocale": {
+                    "id": 1,
+                    "locale": {
+                        "id": 21,
+                        "bcp47Tag": "en"
+                    },
+                    "toBeFullyTranslated": false,
+                    "parentLocale": null
+                }
+            }, {
+                "id": 24,
+                "locale": {
+                    "id": 501,
+                    "bcp47Tag": "id-ID"
+                },
+                "toBeFullyTranslated": true,
+                "parentLocale": {
+                    "id": 1,
+                    "locale": {
+                        "id": 21,
+                        "bcp47Tag": "en"
+                    },
+                    "toBeFullyTranslated": false,
+                    "parentLocale": null
+                }
+            }, {
+                "id": 8,
+                "locale": {
+                    "id": 481,
+                    "bcp47Tag": "hi-IN"
+                },
+                "toBeFullyTranslated": true,
+                "parentLocale": {
+                    "id": 1,
+                    "locale": {
+                        "id": 21,
+                        "bcp47Tag": "en"
+                    },
+                    "toBeFullyTranslated": false,
+                    "parentLocale": null
+                }
+            }, {
+                "id": 9,
+                "locale": {
+                    "id": 249,
+                    "bcp47Tag": "cs-CZ"
+                },
+                "toBeFullyTranslated": true,
+                "parentLocale": {
+                    "id": 1,
+                    "locale": {
+                        "id": 21,
+                        "bcp47Tag": "en"
+                    },
+                    "toBeFullyTranslated": false,
+                    "parentLocale": null
+                }
+            }, {
+                "id": 10,
+                "locale": {
+                    "id": 77,
+                    "bcp47Tag": "ja-JP"
+                },
+                "toBeFullyTranslated": true,
+                "parentLocale": {
+                    "id": 1,
+                    "locale": {
+                        "id": 21,
+                        "bcp47Tag": "en"
+                    },
+                    "toBeFullyTranslated": false,
+                    "parentLocale": null
+                }
+            }, {
+                "id": 17,
+                "locale": {
+                    "id": 389,
+                    "bcp47Tag": "es-MX"
+                },
+                "toBeFullyTranslated": true,
+                "parentLocale": {
+                    "id": 1,
+                    "locale": {
+                        "id": 21,
+                        "bcp47Tag": "en"
+                    },
+                    "toBeFullyTranslated": false,
+                    "parentLocale": null
+                }
+            }, {
+                "id": 19,
+                "locale": {
+                    "id": 125,
+                    "bcp47Tag": "ru-RU"
+                },
+                "toBeFullyTranslated": true,
+                "parentLocale": {
+                    "id": 1,
+                    "locale": {
+                        "id": 21,
+                        "bcp47Tag": "en"
+                    },
+                    "toBeFullyTranslated": false,
+                    "parentLocale": null
+                }
+            }, {
+                "id": 14,
+                "locale": {
+                    "id": 109,
+                    "bcp47Tag": "pt-BR"
+                },
+                "toBeFullyTranslated": true,
+                "parentLocale": {
+                    "id": 1,
+                    "locale": {
+                        "id": 21,
+                        "bcp47Tag": "en"
+                    },
+                    "toBeFullyTranslated": false,
+                    "parentLocale": null
+                }
+            }, {
+                "id": 1,
+                "locale": {
+                    "id": 21,
+                    "bcp47Tag": "en"
+                },
+                "toBeFullyTranslated": false,
+                "parentLocale": null
+            }, {
+                "id": 18,
+                "locale": {
+                    "id": 69,
+                    "bcp47Tag": "it-IT"
+                },
+                "toBeFullyTranslated": true,
+                "parentLocale": {
+                    "id": 1,
+                    "locale": {
+                        "id": 21,
+                        "bcp47Tag": "en"
+                    },
+                    "toBeFullyTranslated": false,
+                    "parentLocale": null
+                }
+            }, {
+                "id": 4,
+                "locale": {
+                    "id": 753,
+                    "bcp47Tag": "uk-UA"
+                },
+                "toBeFullyTranslated": true,
+                "parentLocale": {
+                    "id": 1,
+                    "locale": {
+                        "id": 21,
+                        "bcp47Tag": "en"
+                    },
+                    "toBeFullyTranslated": false,
+                    "parentLocale": null
+                }
+            }, {
+                "id": 31,
+                "locale": {
+                    "id": 733,
+                    "bcp47Tag": "th-TH"
+                },
+                "toBeFullyTranslated": true,
+                "parentLocale": {
+                    "id": 1,
+                    "locale": {
+                        "id": 21,
+                        "bcp47Tag": "en"
+                    },
+                    "toBeFullyTranslated": false,
+                    "parentLocale": null
+                }
+            }, {
+                "id": 2,
+                "locale": {
+                    "id": 49,
+                    "bcp47Tag": "fi-FI"
+                },
+                "toBeFullyTranslated": true,
+                "parentLocale": {
+                    "id": 1,
+                    "locale": {
+                        "id": 21,
+                        "bcp47Tag": "en"
+                    },
+                    "toBeFullyTranslated": false,
+                    "parentLocale": null
+                }
+            }, {
+                "id": 16,
+                "locale": {
+                    "id": 41,
+                    "bcp47Tag": "es-ES"
+                },
+                "toBeFullyTranslated": true,
+                "parentLocale": {
+                    "id": 1,
+                    "locale": {
+                        "id": 21,
+                        "bcp47Tag": "en"
+                    },
+                    "toBeFullyTranslated": false,
+                    "parentLocale": null
+                }
+            }, {
+                "id": 3,
+                "locale": {
+                    "id": 93,
+                    "bcp47Tag": "nb-NO"
+                },
+                "toBeFullyTranslated": true,
+                "parentLocale": {
+                    "id": 1,
+                    "locale": {
+                        "id": 21,
+                        "bcp47Tag": "en"
+                    },
+                    "toBeFullyTranslated": false,
+                    "parentLocale": null
+                }
+            }, {
+                "id": 26,
+                "locale": {
+                    "id": 141,
+                    "bcp47Tag": "tr-TR"
+                },
+                "toBeFullyTranslated": true,
+                "parentLocale": {
+                    "id": 1,
+                    "locale": {
+                        "id": 21,
+                        "bcp47Tag": "en"
+                    },
+                    "toBeFullyTranslated": false,
+                    "parentLocale": null
+                }
+            }],
+        "repositoryStatistic": {
+            "id": 1,
+            "createdDate": 1493398146000,
+            "usedTextUnitCount": 2459,
+            "usedTextUnitWordCount": 10429,
+            "pluralTextUnitCount": 0,
+            "pluralTextUnitWordCount": 0,
+            "repositoryLocaleStatistics": [{
+                    "id": 16,
+                    "locale": {
+                        "id": 9,
+                        "bcp47Tag": "da-DK"
+                    },
+                    "translatedCount": 2174,
+                    "translatedWordCount": 9321,
+                    "translationNeededCount": 0,
+                    "translationNeededWordCount": 0,
+                    "reviewNeededCount": 0,
+                    "reviewNeededWordCount": 0,
+                    "includeInFileCount": 2174,
+                    "includeInFileWordCount": 9321,
+                    "diffToSourcePluralCount": null
+                }, {
+                    "id": 21,
+                    "locale": {
+                        "id": 17,
+                        "bcp47Tag": "de-DE"
+                    },
+                    "translatedCount": 2174,
+                    "translatedWordCount": 9321,
+                    "translationNeededCount": 0,
+                    "translationNeededWordCount": 0,
+                    "reviewNeededCount": 0,
+                    "reviewNeededWordCount": 0,
+                    "includeInFileCount": 2174,
+                    "includeInFileWordCount": 9321,
+                    "diffToSourcePluralCount": null
+                }, {
+                    "id": 24,
+                    "locale": {
+                        "id": 25,
+                        "bcp47Tag": "en-GB"
+                    },
+                    "translatedCount": 2174,
+                    "translatedWordCount": 9321,
+                    "translationNeededCount": 0,
+                    "translationNeededWordCount": 0,
+                    "reviewNeededCount": 0,
+                    "reviewNeededWordCount": 0,
+                    "includeInFileCount": 2174,
+                    "includeInFileWordCount": 9321,
+                    "diffToSourcePluralCount": null
+                }, {
+                    "id": 8,
+                    "locale": {
+                        "id": 41,
+                        "bcp47Tag": "es-ES"
+                    },
+                    "translatedCount": 2174,
+                    "translatedWordCount": 9321,
+                    "translationNeededCount": 0,
+                    "translationNeededWordCount": 0,
+                    "reviewNeededCount": 0,
+                    "reviewNeededWordCount": 0,
+                    "includeInFileCount": 2174,
+                    "includeInFileWordCount": 9321,
+                    "diffToSourcePluralCount": null
+                }, {
+                    "id": 23,
+                    "locale": {
+                        "id": 49,
+                        "bcp47Tag": "fi-FI"
+                    },
+                    "translatedCount": 2174,
+                    "translatedWordCount": 9321,
+                    "translationNeededCount": 0,
+                    "translationNeededWordCount": 0,
+                    "reviewNeededCount": 0,
+                    "reviewNeededWordCount": 0,
+                    "includeInFileCount": 2174,
+                    "includeInFileWordCount": 9321,
+                    "diffToSourcePluralCount": null
+                }, {
+                    "id": 4,
+                    "locale": {
+                        "id": 57,
+                        "bcp47Tag": "fr-FR"
+                    },
+                    "translatedCount": 2174,
+                    "translatedWordCount": 9321,
+                    "translationNeededCount": 0,
+                    "translationNeededWordCount": 0,
+                    "reviewNeededCount": 0,
+                    "reviewNeededWordCount": 0,
+                    "includeInFileCount": 2174,
+                    "includeInFileWordCount": 9321,
+                    "diffToSourcePluralCount": null
+                }, {
+                    "id": 3,
+                    "locale": {
+                        "id": 69,
+                        "bcp47Tag": "it-IT"
+                    },
+                    "translatedCount": 2175,
+                    "translatedWordCount": 9325,
+                    "translationNeededCount": 0,
+                    "translationNeededWordCount": 0,
+                    "reviewNeededCount": 0,
+                    "reviewNeededWordCount": 0,
+                    "includeInFileCount": 2175,
+                    "includeInFileWordCount": 9325,
+                    "diffToSourcePluralCount": null
+                }, {
+                    "id": 5,
+                    "locale": {
+                        "id": 77,
+                        "bcp47Tag": "ja-JP"
+                    },
+                    "translatedCount": 2104,
+                    "translatedWordCount": 9052,
+                    "translationNeededCount": 0,
+                    "translationNeededWordCount": 0,
+                    "reviewNeededCount": 0,
+                    "reviewNeededWordCount": 0,
+                    "includeInFileCount": 2104,
+                    "includeInFileWordCount": 9052,
+                    "diffToSourcePluralCount": null
+                }, {
+                    "id": 7,
+                    "locale": {
+                        "id": 85,
+                        "bcp47Tag": "ko-KR"
+                    },
+                    "translatedCount": 2104,
+                    "translatedWordCount": 9052,
+                    "translationNeededCount": 0,
+                    "translationNeededWordCount": 0,
+                    "reviewNeededCount": 0,
+                    "reviewNeededWordCount": 0,
+                    "includeInFileCount": 2104,
+                    "includeInFileWordCount": 9052,
+                    "diffToSourcePluralCount": null
+                }, {
+                    "id": 25,
+                    "locale": {
+                        "id": 93,
+                        "bcp47Tag": "nb-NO"
+                    },
+                    "translatedCount": 2175,
+                    "translatedWordCount": 9325,
+                    "translationNeededCount": 0,
+                    "translationNeededWordCount": 0,
+                    "reviewNeededCount": 0,
+                    "reviewNeededWordCount": 0,
+                    "includeInFileCount": 2175,
+                    "includeInFileWordCount": 9325,
+                    "diffToSourcePluralCount": null
+                }, {
+                    "id": 28,
+                    "locale": {
+                        "id": 101,
+                        "bcp47Tag": "nl-NL"
+                    },
+                    "translatedCount": 2175,
+                    "translatedWordCount": 9325,
+                    "translationNeededCount": 0,
+                    "translationNeededWordCount": 0,
+                    "reviewNeededCount": 0,
+                    "reviewNeededWordCount": 0,
+                    "includeInFileCount": 2175,
+                    "includeInFileWordCount": 9325,
+                    "diffToSourcePluralCount": null
+                }, {
+                    "id": 9,
+                    "locale": {
+                        "id": 109,
+                        "bcp47Tag": "pt-BR"
+                    },
+                    "translatedCount": 2175,
+                    "translatedWordCount": 9325,
+                    "translationNeededCount": 0,
+                    "translationNeededWordCount": 0,
+                    "reviewNeededCount": 0,
+                    "reviewNeededWordCount": 0,
+                    "includeInFileCount": 2175,
+                    "includeInFileWordCount": 9325,
+                    "diffToSourcePluralCount": null
+                }, {
+                    "id": 11,
+                    "locale": {
+                        "id": 117,
+                        "bcp47Tag": "pl-PL"
+                    },
+                    "translatedCount": 2317,
+                    "translatedWordCount": 9877,
+                    "translationNeededCount": 0,
+                    "translationNeededWordCount": 0,
+                    "reviewNeededCount": 0,
+                    "reviewNeededWordCount": 0,
+                    "includeInFileCount": 2317,
+                    "includeInFileWordCount": 9877,
+                    "diffToSourcePluralCount": null
+                }, {
+                    "id": 10,
+                    "locale": {
+                        "id": 125,
+                        "bcp47Tag": "ru-RU"
+                    },
+                    "translatedCount": 2317,
+                    "translatedWordCount": 9877,
+                    "translationNeededCount": 0,
+                    "translationNeededWordCount": 0,
+                    "reviewNeededCount": 0,
+                    "reviewNeededWordCount": 0,
+                    "includeInFileCount": 2317,
+                    "includeInFileWordCount": 9877,
+                    "diffToSourcePluralCount": null
+                }, {
+                    "id": 18,
+                    "locale": {
+                        "id": 133,
+                        "bcp47Tag": "sv-SE"
+                    },
+                    "translatedCount": 2175,
+                    "translatedWordCount": 9325,
+                    "translationNeededCount": 0,
+                    "translationNeededWordCount": 0,
+                    "reviewNeededCount": 0,
+                    "reviewNeededWordCount": 0,
+                    "includeInFileCount": 2175,
+                    "includeInFileWordCount": 9325,
+                    "diffToSourcePluralCount": null
+                }, {
+                    "id": 6,
+                    "locale": {
+                        "id": 141,
+                        "bcp47Tag": "tr-TR"
+                    },
+                    "translatedCount": 2175,
+                    "translatedWordCount": 9325,
+                    "translationNeededCount": 0,
+                    "translationNeededWordCount": 0,
+                    "reviewNeededCount": 0,
+                    "reviewNeededWordCount": 0,
+                    "includeInFileCount": 2175,
+                    "includeInFileWordCount": 9325,
+                    "diffToSourcePluralCount": null
+                }, {
+                    "id": 27,
+                    "locale": {
+                        "id": 249,
+                        "bcp47Tag": "cs-CZ"
+                    },
+                    "translatedCount": 2316,
+                    "translatedWordCount": 9873,
+                    "translationNeededCount": 0,
+                    "translationNeededWordCount": 0,
+                    "reviewNeededCount": 0,
+                    "reviewNeededWordCount": 0,
+                    "includeInFileCount": 2316,
+                    "includeInFileWordCount": 9873,
+                    "diffToSourcePluralCount": null
+                }, {
+                    "id": 1,
+                    "locale": {
+                        "id": 285,
+                        "bcp47Tag": "el-GR"
+                    },
+                    "translatedCount": 2174,
+                    "translatedWordCount": 9321,
+                    "translationNeededCount": 0,
+                    "translationNeededWordCount": 0,
+                    "reviewNeededCount": 0,
+                    "reviewNeededWordCount": 0,
+                    "includeInFileCount": 2174,
+                    "includeInFileWordCount": 9321,
+                    "diffToSourcePluralCount": null
+                }, {
+                    "id": 29,
+                    "locale": {
+                        "id": 389,
+                        "bcp47Tag": "es-MX"
+                    },
+                    "translatedCount": 2174,
+                    "translatedWordCount": 9321,
+                    "translationNeededCount": 0,
+                    "translationNeededWordCount": 0,
+                    "reviewNeededCount": 0,
+                    "reviewNeededWordCount": 0,
+                    "includeInFileCount": 2174,
+                    "includeInFileWordCount": 9321,
+                    "diffToSourcePluralCount": null
+                }, {
+                    "id": 19,
+                    "locale": {
+                        "id": 481,
+                        "bcp47Tag": "hi-IN"
+                    },
+                    "translatedCount": 2174,
+                    "translatedWordCount": 9321,
+                    "translationNeededCount": 0,
+                    "translationNeededWordCount": 0,
+                    "reviewNeededCount": 0,
+                    "reviewNeededWordCount": 0,
+                    "includeInFileCount": 2174,
+                    "includeInFileWordCount": 9321,
+                    "diffToSourcePluralCount": null
+                }, {
+                    "id": 12,
+                    "locale": {
+                        "id": 493,
+                        "bcp47Tag": "hu-HU"
+                    },
+                    "translatedCount": 2174,
+                    "translatedWordCount": 9321,
+                    "translationNeededCount": 0,
+                    "translationNeededWordCount": 0,
+                    "reviewNeededCount": 0,
+                    "reviewNeededWordCount": 0,
+                    "includeInFileCount": 2174,
+                    "includeInFileWordCount": 9321,
+                    "diffToSourcePluralCount": null
+                }, {
+                    "id": 17,
+                    "locale": {
+                        "id": 501,
+                        "bcp47Tag": "id-ID"
+                    },
+                    "translatedCount": 2104,
+                    "translatedWordCount": 9052,
+                    "translationNeededCount": 0,
+                    "translationNeededWordCount": 0,
+                    "reviewNeededCount": 0,
+                    "reviewNeededWordCount": 0,
+                    "includeInFileCount": 2104,
+                    "includeInFileWordCount": 9052,
+                    "diffToSourcePluralCount": null
+                }, {
+                    "id": 14,
+                    "locale": {
+                        "id": 573,
+                        "bcp47Tag": "ms-MY"
+                    },
+                    "translatedCount": 2104,
+                    "translatedWordCount": 9052,
+                    "translationNeededCount": 0,
+                    "translationNeededWordCount": 0,
+                    "reviewNeededCount": 0,
+                    "reviewNeededWordCount": 0,
+                    "includeInFileCount": 2104,
+                    "includeInFileWordCount": 9052,
+                    "diffToSourcePluralCount": null
+                }, {
+                    "id": 22,
+                    "locale": {
+                        "id": 617,
+                        "bcp47Tag": "pt-PT"
+                    },
+                    "translatedCount": 2175,
+                    "translatedWordCount": 9325,
+                    "translationNeededCount": 0,
+                    "translationNeededWordCount": 0,
+                    "reviewNeededCount": 0,
+                    "reviewNeededWordCount": 0,
+                    "includeInFileCount": 2175,
+                    "includeInFileWordCount": 9325,
+                    "diffToSourcePluralCount": null
+                }, {
+                    "id": 13,
+                    "locale": {
+                        "id": 633,
+                        "bcp47Tag": "ro-RO"
+                    },
+                    "translatedCount": 2246,
+                    "translatedWordCount": 9601,
+                    "translationNeededCount": 0,
+                    "translationNeededWordCount": 0,
+                    "reviewNeededCount": 0,
+                    "reviewNeededWordCount": 0,
+                    "includeInFileCount": 2246,
+                    "includeInFileWordCount": 9601,
+                    "diffToSourcePluralCount": null
+                }, {
+                    "id": 30,
+                    "locale": {
+                        "id": 681,
+                        "bcp47Tag": "sk-SK"
+                    },
+                    "translatedCount": 2317,
+                    "translatedWordCount": 9877,
+                    "translationNeededCount": 0,
+                    "translationNeededWordCount": 0,
+                    "reviewNeededCount": 0,
+                    "reviewNeededWordCount": 0,
+                    "includeInFileCount": 2317,
+                    "includeInFileWordCount": 9877,
+                    "diffToSourcePluralCount": null
+                }, {
+                    "id": 15,
+                    "locale": {
+                        "id": 733,
+                        "bcp47Tag": "th-TH"
+                    },
+                    "translatedCount": 2104,
+                    "translatedWordCount": 9052,
+                    "translationNeededCount": 0,
+                    "translationNeededWordCount": 0,
+                    "reviewNeededCount": 0,
+                    "reviewNeededWordCount": 0,
+                    "includeInFileCount": 2104,
+                    "includeInFileWordCount": 9052,
+                    "diffToSourcePluralCount": null
+                }, {
+                    "id": 26,
+                    "locale": {
+                        "id": 737,
+                        "bcp47Tag": "tl-PH"
+                    },
+                    "translatedCount": 2175,
+                    "translatedWordCount": 9325,
+                    "translationNeededCount": 0,
+                    "translationNeededWordCount": 0,
+                    "reviewNeededCount": 0,
+                    "reviewNeededWordCount": 0,
+                    "includeInFileCount": 2175,
+                    "includeInFileWordCount": 9325,
+                    "diffToSourcePluralCount": null
+                }, {
+                    "id": 20,
+                    "locale": {
+                        "id": 753,
+                        "bcp47Tag": "uk-UA"
+                    },
+                    "translatedCount": 2317,
+                    "translatedWordCount": 9877,
+                    "translationNeededCount": 0,
+                    "translationNeededWordCount": 0,
+                    "reviewNeededCount": 0,
+                    "reviewNeededWordCount": 0,
+                    "includeInFileCount": 2317,
+                    "includeInFileWordCount": 9877,
+                    "diffToSourcePluralCount": null
+                }, {
+                    "id": 2,
+                    "locale": {
+                        "id": 765,
+                        "bcp47Tag": "vi-VN"
+                    },
+                    "translatedCount": 2104,
+                    "translatedWordCount": 9052,
+                    "translationNeededCount": 0,
+                    "translationNeededWordCount": 0,
+                    "reviewNeededCount": 0,
+                    "reviewNeededWordCount": 0,
+                    "includeInFileCount": 2104,
+                    "includeInFileWordCount": 9052,
+                    "diffToSourcePluralCount": null
+                }]
+        }
+    }, {
+        "id": 2,
+        "createdDate": 1493409583000,
+        "name": "androidSub",
+        "description": "",
+        "repositoryLocales": [{
+                "id": 34,
+                "locale": {
+                    "id": 17,
+                    "bcp47Tag": "de-DE"
+                },
+                "toBeFullyTranslated": true,
+                "parentLocale": {
+                    "id": 32,
+                    "locale": {
+                        "id": 21,
+                        "bcp47Tag": "en"
+                    },
+                    "toBeFullyTranslated": false,
+                    "parentLocale": null
+                }
+            }, {
+                "id": 32,
+                "locale": {
+                    "id": 21,
+                    "bcp47Tag": "en"
+                },
+                "toBeFullyTranslated": false,
+                "parentLocale": null
+            }, {
+                "id": 35,
+                "locale": {
+                    "id": 57,
+                    "bcp47Tag": "fr-FR"
+                },
+                "toBeFullyTranslated": true,
+                "parentLocale": {
+                    "id": 32,
+                    "locale": {
+                        "id": 21,
+                        "bcp47Tag": "en"
+                    },
+                    "toBeFullyTranslated": false,
+                    "parentLocale": null
+                }
+            }, {
+                "id": 36,
+                "locale": {
+                    "id": 77,
+                    "bcp47Tag": "ja-JP"
+                },
+                "toBeFullyTranslated": true,
+                "parentLocale": {
+                    "id": 32,
+                    "locale": {
+                        "id": 21,
+                        "bcp47Tag": "en"
+                    },
+                    "toBeFullyTranslated": false,
+                    "parentLocale": null
+                }
+            }, {
+                "id": 33,
+                "locale": {
+                    "id": 125,
+                    "bcp47Tag": "ru-RU"
+                },
+                "toBeFullyTranslated": true,
+                "parentLocale": {
+                    "id": 32,
+                    "locale": {
+                        "id": 21,
+                        "bcp47Tag": "en"
+                    },
+                    "toBeFullyTranslated": false,
+                    "parentLocale": null
+                }
+            }],
+        "repositoryStatistic": {
+            "id": 2,
+            "createdDate": 1493409583000,
+            "usedTextUnitCount": 2459,
+            "usedTextUnitWordCount": 10429,
+            "pluralTextUnitCount": 426,
+            "pluralTextUnitWordCount": 1653,
+            "repositoryLocaleStatistics": [{
+                    "id": 31,
+                    "locale": {
+                        "id": 17,
+                        "bcp47Tag": "de-DE"
+                    },
+                    "translatedCount": 2173,
+                    "translatedWordCount": 9244,
+                    "translationNeededCount": 0,
+                    "translationNeededWordCount": 0,
+                    "reviewNeededCount": 0,
+                    "reviewNeededWordCount": 0,
+                    "includeInFileCount": 2173,
+                    "includeInFileWordCount": 9244,
+                    "diffToSourcePluralCount": 4
+                }, {
+                    "id": 32,
+                    "locale": {
+                        "id": 57,
+                        "bcp47Tag": "fr-FR"
+                    },
+                    "translatedCount": 2174,
+                    "translatedWordCount": 9321,
+                    "translationNeededCount": 0,
+                    "translationNeededWordCount": 0,
+                    "reviewNeededCount": 0,
+                    "reviewNeededWordCount": 0,
+                    "includeInFileCount": 2174,
+                    "includeInFileWordCount": 9321,
+                    "diffToSourcePluralCount": 4
+                }, {
+                    "id": 33,
+                    "locale": {
+                        "id": 77,
+                        "bcp47Tag": "ja-JP"
+                    },
+                    "translatedCount": 2104,
+                    "translatedWordCount": 9052,
+                    "translationNeededCount": 0,
+                    "translationNeededWordCount": 0,
+                    "reviewNeededCount": 0,
+                    "reviewNeededWordCount": 0,
+                    "includeInFileCount": 2104,
+                    "includeInFileWordCount": 9052,
+                    "diffToSourcePluralCount": 5
+                }, {
+                    "id": 34,
+                    "locale": {
+                        "id": 125,
+                        "bcp47Tag": "ru-RU"
+                    },
+                    "translatedCount": 2317,
+                    "translatedWordCount": 9877,
+                    "translationNeededCount": 0,
+                    "translationNeededWordCount": 0,
+                    "reviewNeededCount": 0,
+                    "reviewNeededWordCount": 0,
+                    "includeInFileCount": 2317,
+                    "includeInFileWordCount": 9877,
+                    "diffToSourcePluralCount": 2
+                }]
+        }
+    }]

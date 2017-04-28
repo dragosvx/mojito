@@ -5,7 +5,6 @@ import com.box.l10n.mojito.entity.AssetExtraction;
 import com.box.l10n.mojito.entity.AssetTextUnit;
 import com.box.l10n.mojito.entity.PollableTask;
 import com.box.l10n.mojito.rest.asset.FilterConfigIdOverride;
-import com.box.l10n.mojito.rest.asset.SourceAsset;
 import com.box.l10n.mojito.service.asset.AssetRepository;
 import com.box.l10n.mojito.service.assetExtraction.extractor.AssetExtractor;
 import com.box.l10n.mojito.service.assetExtraction.extractor.UnsupportedAssetFilterTypeException;
@@ -128,6 +127,11 @@ public class AssetExtractionService {
         return assetExtraction;
     }
 
+    
+    public AssetTextUnit createAssetTextUnit(Long assetExtractionId, String name, String content, String comment) {
+        return createAssetTextUnit(assetExtractionId, name, content, comment, null);
+    }
+     
     /**
      * Creates a new AssetTextUnit, and associate it to the given asset extraction.
      *
@@ -138,7 +142,7 @@ public class AssetExtractionService {
      * @return The created AssetTextUnit
      */
     @Transactional
-    public AssetTextUnit createAssetTextUnit(Long assetExtractionId, String name, String content, String comment) {
+    public AssetTextUnit createAssetTextUnit(Long assetExtractionId, String name, String content, String comment, String pluralForm) {
 
         logger.debug("Adding AssetTextUnit for assetExtractionId: {}\nname: {}\ncontent: {}\ncomment: {}\n", assetExtractionId, name, content, comment);
 
@@ -149,6 +153,7 @@ public class AssetExtractionService {
         assetTextUnit.setComment(comment);
         assetTextUnit.setMd5(DigestUtils.md5Hex(name + content + comment));
         assetTextUnit.setContentMd5(DigestUtils.md5Hex(content));
+        assetTextUnit.setPuralForm(pluralForm);
 
         assetTextUnitRepository.save(assetTextUnit);
 

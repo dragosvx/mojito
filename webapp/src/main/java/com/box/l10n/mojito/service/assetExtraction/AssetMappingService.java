@@ -103,7 +103,15 @@ public class AssetMappingService {
         List<TMTextUnit> newlyCreatedTMTextUnits = new ArrayList<>();
 
         for (AssetTextUnit unmappedAssetTextUnit : assetTextUnitRepository.getUnmappedAssetTextUnits(assetExtractionId)) {
-            TMTextUnit addTMTextUnit = tmService.addTMTextUnit(tmId, assetId, unmappedAssetTextUnit.getName(), unmappedAssetTextUnit.getContent(), unmappedAssetTextUnit.getComment());
+            TMTextUnit addTMTextUnit = tmService.addTMTextUnit(
+                    tmId, 
+                    assetId, 
+                    unmappedAssetTextUnit.getName(), 
+                    unmappedAssetTextUnit.getContent(), 
+                    unmappedAssetTextUnit.getComment(),
+                    null,
+                    unmappedAssetTextUnit.getPluralForm());
+            
             newlyCreatedTMTextUnits.add(addTMTextUnit);
         }
 

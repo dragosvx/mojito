@@ -102,6 +102,13 @@ public class TextUnitSearcher {
         c.addJoin(new NativeJoin("asset_text_unit_to_tm_text_unit", "map", NativeJoin.JoinType.LEFT_OUTER, onClauseAssetTextUnit));
 
         c.addJoin(NativeExps.leftJoin("asset_text_unit", "atu", "atu.id", "map.asset_text_unit_id"));
+        
+        // check plural form for language, text unit either have plural or not but this won't be updated, asset text unit will be fresh so maybe should look at that
+        NativeJunctionExp onClausePluralForm = NativeExps.conjunction();
+        onClausePluralForm.add(new NativeColumnEqExp("pf.form", "atu.plural_form"));
+        onClausePluralForm.add(new NativeColumnEqExp("pf.locale_id", "l.id"));
+        c.addJoin(new NativeJoin("plural_form_for_locale", "pf", NativeJoin.JoinType.LEFT_OUTER, onClausePluralForm));
+               
 
         logger.debug("Set projections");
 
@@ -129,7 +136,13 @@ public class TextUnitSearcher {
 
         logger.debug("Add search filters");
         NativeJunctionExp conjunction = NativeExps.conjunction();
-
+        
+        // get ride of uncessary plural form per language
+        NativeJunctionExp pluralFormForLocale = NativeExps.disjunction();
+        pluralFormForLocale.add(NativeExps.isNotNull("pf.form"));
+        pluralFormForLocale.add(NativeExps.isNull("atu.plural_form")); // for backward compatibility?
+        conjunction.add(pluralFormForLocale);
+        
         if (searchParameters.getRepositoryIds() != null && !searchParameters.getRepositoryIds().isEmpty()) {
             conjunction.add(NativeExps.in("r.id", searchParameters.getRepositoryIds()));
         }

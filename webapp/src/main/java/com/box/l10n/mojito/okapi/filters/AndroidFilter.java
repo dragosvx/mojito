@@ -300,7 +300,7 @@ public class AndroidFilter extends XMLFilter {
                     if (zero == null) {
                         zero = createCopyOfOther("zero");
                     }
-
+                    zero.getTextUnit().setAnnotation(new PluralFormAnnotation("zero"));
                     newForms.add(zero);
                 }
 
@@ -308,6 +308,7 @@ public class AndroidFilter extends XMLFilter {
                     if (one == null) {
                         one = createCopyOfOther("one");
                     }
+                    one.getTextUnit().setAnnotation(new PluralFormAnnotation("one"));
                     newForms.add(one);
                 }
 
@@ -315,6 +316,7 @@ public class AndroidFilter extends XMLFilter {
                     if (two == null) {
                         two = createCopyOfOther("two");
                     }
+                    two.getTextUnit().setAnnotation(new PluralFormAnnotation("two"));
                     newForms.add(two);
                 }
 
@@ -322,6 +324,7 @@ public class AndroidFilter extends XMLFilter {
                     if (few == null) {
                         few = createCopyOfOther("few");
                     }
+                    few.getTextUnit().setAnnotation(new PluralFormAnnotation("few"));
                     newForms.add(few);
                 }
 
@@ -329,10 +332,12 @@ public class AndroidFilter extends XMLFilter {
                     if (many == null) {
                         many = createCopyOfOther("many");
                     }
+                    many.getTextUnit().setAnnotation(new PluralFormAnnotation("many"));
                     newForms.add(many);
                 }
 
                 if ("other".equals(pluralForm)) {
+                    other.getTextUnit().setAnnotation(new PluralFormAnnotation("other"));
                     newForms.add(other);
                 }
             }

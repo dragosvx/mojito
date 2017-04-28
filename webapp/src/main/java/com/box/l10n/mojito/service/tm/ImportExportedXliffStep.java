@@ -327,7 +327,14 @@ public class ImportExportedXliffStep extends BasePipelineStep {
         String sourceContent = textUnit.getSource().toString();
         ImportExportNote importExportNote = textUnitUtils.getImportExportNote(textUnit);
 
-        tmService.addTMTextUnit(asset.getRepository().getTm().getId(), asset.getId(), name, sourceContent, importExportNote.getSourceComment(), importExportNote.getCreatedDate());
+        tmService.addTMTextUnit(
+                asset.getRepository().getTm().getId(), 
+                asset.getId(), 
+                name,
+                sourceContent, 
+                importExportNote.getSourceComment(),
+                importExportNote.getCreatedDate(), 
+                null);
     }
 
     @Override
