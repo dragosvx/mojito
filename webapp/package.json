@@ -15,6 +15,7 @@
     "keycode": "^2.1.0",
     "keymirror": "~0.1.0",
     "lodash": "^3.10.1",
+    "mark.js": "github:julmot/mark.js",
     "node-sass": "^3.3.3",
     "object-assign": "^1.0.0",
     "prop-types": "^15.5.10",

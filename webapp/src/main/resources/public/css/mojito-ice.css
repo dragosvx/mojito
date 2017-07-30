@@ -1,0 +1,26 @@
+.mojito-ice-modal {
+    display: absolute; 
+    background: red; 
+    width: 100px; 
+    height: 100px; 
+} 
+
+
+.mojito-ice-string:hover .mojito-ice-edit { 
+    display: inline; 
+} 
+
+.mojito-ice-edit { 
+    display: inline;  
+    position: absolute; 
+    margin-left: -10px; 
+    opactiy: 0.9;
+    height: 20px; 
+    width:20px;  border: 1px solid black; 
+    border-radius: 2px; 
+    background-color: white;
+}
+
+.mojito-ice-edit:hover {
+    display: inline;
+} 
