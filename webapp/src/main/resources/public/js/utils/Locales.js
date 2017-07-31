@@ -61,6 +61,7 @@ class Locales {
             'be',
             'de',
             'en',
+            'en-x-pseudo',
             'es',
             'fr',
             'it',
@@ -146,11 +147,15 @@ class Locales {
      * @returns {string} the native display name
      */
     getNativeDispalyName(language) {
-        const targetCldr = new Cldr(language);
+        if (language === 'en-x-pseudo') {
+            return "Pseudo Localization";
+        } else {
+            const targetCldr = new Cldr(language);
 
-        const languageDisplay = targetCldr.main("localeDisplayNames/languages/" + language);
+            const languageDisplay = targetCldr.main("localeDisplayNames/languages/" + language);
 
-        return languageDisplay;
+            return languageDisplay;
+        }
     }
 
     /**
