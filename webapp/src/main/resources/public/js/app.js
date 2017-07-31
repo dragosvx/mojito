@@ -3,7 +3,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import {Router, Route, IndexRoute, useRouterHistory} from "react-router";
 import { createHistory } from 'history'
-        import {Modal, Button} from "react-bootstrap";
+import {Modal, Button} from "react-bootstrap";
 import {FormattedMessage, IntlProvider, addLocaleData} from "react-intl";
 import App from "./components/App";
 import BaseClient from "./sdk/BaseClient";
@@ -36,9 +36,9 @@ addLocaleData([...en, ...fr, ...be, ...ko, ...ru, ...de, ...es, ...it, ...ja, ..
 
 const browserHistory = useRouterHistory(createHistory)({basename: CONTEXT_PATH});
 
-import Ice from './ice.js';
-
-Ice.setup(MESSAGES, document, window);
+import Ice from './ict/ict.js';
+console.log('Ice setup');
+Ice.setup(MESSAGES, LOCALE);
 
 if (!global.Intl) {
     // NOTE: require.ensure would have been nice to use to do module loading

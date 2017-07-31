@@ -1,7 +1,7 @@
 var path = require("path"),
-    webpack = require("webpack"),
-    minimize = process.argv.indexOf("--minimize") !== -1,
-    inlineSourceMap = process.argv.indexOf("--inline-source-map") !== -1;
+        webpack = require("webpack"),
+        minimize = process.argv.indexOf("--minimize") !== -1,
+        inlineSourceMap = process.argv.indexOf("--inline-source-map") !== -1;
 
 var config = {
     entry: "./src/main/resources/public/js/app.js",
@@ -16,22 +16,26 @@ var config = {
                     presets: ["es2015", "react"]
                 }
             },
-            {test: /\.json$/, loader: "json"}
+            {test: /\.json$/, loader: "json"},
+            {
+                test: /\.css$/,
+                loaders: ['style-loader', 'css-loader'],
+            },
         ]
     },
     plugins: []
 };
 
 if (minimize) {
-    
+
     config.plugins.push(
-    new webpack.DefinePlugin({
-      'process.env': {
-        'NODE_ENV': JSON.stringify('production')
-      }
-    }));
-    
-    config.plugins.push(new webpack.optimize.DedupePlugin()); 
+            new webpack.DefinePlugin({
+                'process.env': {
+                    'NODE_ENV': JSON.stringify('production')
+                }
+            }));
+
+    config.plugins.push(new webpack.optimize.DedupePlugin());
     config.plugins.push(new webpack.optimize.UglifyJsPlugin());
     config.plugins.push(new webpack.optimize.AggressiveMergingPlugin());
 }
