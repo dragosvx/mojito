@@ -12,8 +12,11 @@ import Login from "./components/Login";
 import Workbench from "./components/workbench/Workbench";
 import Repositories from "./components/repositories/Repositories";
 import Drops from "./components/drops/Drops";
+import ScreenshotsPage from "./components/screenshots/ScreenshotsPage";
 import Settings from "./components/settings/Settings";
 import WorkbenchActions from "./actions/workbench/WorkbenchActions";
+import ScreenshotsHistoryStore from "./stores/screenshots/ScreenshotsHistoryStore";
+
 import SearchConstants from "./utils/SearchConstants";
 import UrlHelper from "./utils/UrlHelper";
 import SearchParamsStore from "./stores/workbench/SearchParamsStore";
@@ -39,9 +42,9 @@ __webpack_public_path__ = CONTEXT_PATH + "/";
 const browserHistory = useRouterHistory(createHistory)({basename: CONTEXT_PATH});
 
 import(
-  /* webpackChunkName: "[request]", webpackMode: "lazy" */
-  `../../properties/${LOCALE}.properties`).then(messages => {
-    
+        /* webpackChunkName: "[request]", webpackMode: "lazy" */
+        `../../properties/${LOCALE}.properties`).then(messages => {
+
     if (!global.Intl) {
         // NOTE: require.ensure would have been nice to use to do module loading
         // but webpack doesn't support ES6 so after Babel transcompile,
@@ -56,7 +59,6 @@ import(
         startApp(getMergedMessages(messages));
     }
 });
-
 
 //TODO should implement merging logic as part of the build in a specific loader
 var enMessages = require(`../../properties/en.properties`);
@@ -74,6 +76,7 @@ function startApp(messages) {
                             <Route path="workbench" component={Workbench} onLeave={onLeaveWorkbench}/>
                             <Route path="repositories" component={Repositories} />
                             <Route path="project-requests" component={Drops}/>
+                            <Route path="screenshots" component={ScreenshotsPage} />
                             <Route path="settings" component={Settings}/>
                             <IndexRoute component={Repositories}/>
                         </Route>
@@ -84,6 +87,41 @@ function startApp(messages) {
             </IntlProvider>
             , document.getElementById("app")
             );
+
+    /**
+     * Override handler to customise behavior
+     */
+    BaseClient.authenticateHandler = function () {
+        let containerId = "unauthenticated-container";
+        $("body").append("<div id=\"" + containerId + "\" />");
+
+        function okOnClick() {
+            let pathNameStrippedLeadingSlash = location.pathname.substr(1 + CONTEXT_PATH.length, location.pathname.length );
+            let currentLocation = pathNameStrippedLeadingSlash + window.location.search;
+            window.location.href = UrlHelper.getUrlWithContextPath("/login?") + $.param({"showPage": currentLocation});
+        }
+
+        ReactDOM.render(
+                <IntlProvider locale={LOCALE} messages={messages}>
+                    <Modal show={true}>
+                        <Modal.Header closeButton={true}>
+                            <Modal.Title>
+                                <FormattedMessage id="error.modal.header.title" />
+                            </Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body>
+                            <FormattedMessage id="error.modal.message.loggedOut" />
+                        </Modal.Body>
+                        <Modal.Footer>
+                            <Button bsStyle="primary" onClick={okOnClick}>
+                                <FormattedMessage id="label.okay" />
+                            </Button>
+                        </Modal.Footer>
+                    </Modal>
+                </IntlProvider>
+                , document.getElementById(containerId));
+    };
+
 }
 
 /**
@@ -100,6 +138,11 @@ function loadBasedOnLocation(location) {
     if (location.pathname === '/workbench' && location.action === 'POP') {
         WorkbenchActions.searchParamsChanged(SearchParamsStore.convertQueryToSearchParams(location.query));
     }
+
+    if (location.pathname === '/screenshots' && location.action === 'POP') {
+        console.log("reload from history store");
+        ScreenshotsHistoryStore.initStoreFromLocationQuery(location.query);
+    }
 }
 
 /**
@@ -115,39 +158,3 @@ loadBasedOnLocation(currentLocation);
 browserHistory.listen(location => {
     loadBasedOnLocation(location);
 });
-
-/**
- * Override handler to customise behavior
- */
-BaseClient.authenticateHandler = function () {
-    let containerId = "unauthenticated-container";
-    $("body").append("<div id=\"" + containerId + "\" />");
-
-    function okOnClick() {
-        let pathNameStrippedLeadingSlash = location.pathname.substr(1, location.pathname.length);
-        let currentLocation = pathNameStrippedLeadingSlash + window.location.search;
-
-        window.location.href = UrlHelper.getUrlWithContextPath("/login?") + $.param({"showPage": currentLocation});
-    }
-
-    ReactDOM.render(
-            <IntlProvider locale={LOCALE} messages={MESSAGES}>
-                <Modal show={true}>
-                    <Modal.Header closeButton={true}>
-                        <Modal.Title>
-                            <FormattedMessage id="error.modal.header.title" />
-                        </Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>
-                        <FormattedMessage id="error.modal.message.loggedOut" />
-                    </Modal.Body>
-                    <Modal.Footer>
-                        <Button bsStyle="primary" onClick={okOnClick}>
-                            <FormattedMessage id="label.okay" />
-                        </Button>
-                    </Modal.Footer>
-                </Modal>
-            </IntlProvider>
-            , document.getElementById(containerId));
-};
-
