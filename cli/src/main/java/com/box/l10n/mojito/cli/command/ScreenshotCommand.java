@@ -93,8 +93,6 @@ public class ScreenshotCommand extends Command {
 
     Map<String, Locale> repositoryLocales;
 
-    long runId = new Date().getTime();
-
     @Override
     public void execute() throws CommandException {
 
@@ -132,7 +130,7 @@ public class ScreenshotCommand extends Command {
             Path relativePath = commandDirectories.getSourceDirectoryPath().relativize(imagePath);
             screenshot.setLocale(getLocaleFromImagePath(relativePath));
 
-            String uploadPath = runId + "/" + relativePath.toString();
+            String uploadPath = screenshotRun.getName() + "/" + relativePath.toString();
             screenshot.setSrc("api/images/" + uploadPath);
             uploadImage(imagePath, uploadPath);
             screenshotRun.getScreenshots().add(screenshot);

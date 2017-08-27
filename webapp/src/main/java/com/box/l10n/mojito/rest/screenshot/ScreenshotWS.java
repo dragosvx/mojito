@@ -3,6 +3,7 @@ package com.box.l10n.mojito.rest.screenshot;
 import com.box.l10n.mojito.entity.Screenshot;
 import com.box.l10n.mojito.entity.ScreenshotRun;
 import com.box.l10n.mojito.service.screenshot.ScreenshotService;
+import com.box.l10n.mojito.service.tm.search.SearchType;
 import java.util.ArrayList;
 import java.util.List;
 import org.slf4j.Logger;
@@ -41,6 +42,10 @@ public class ScreenshotWS {
             @RequestParam(value = "bcp47Tags[]", required = false) ArrayList<String> bcp47Tags,
             @RequestParam(required = false) String screenshotName,
             @RequestParam(required = false) Screenshot.Status status,
+            @RequestParam(value = "name", required = false) String name,
+            @RequestParam(value = "source", required = false) String source,
+            @RequestParam(value = "target", required = false) String target,
+            @RequestParam(value = "searchType", required = false, defaultValue = "EXACT") SearchType searchType,
             @RequestParam(value = "limit", required = false, defaultValue = "10") Integer limit,
             @RequestParam(value = "offset", required = false, defaultValue = "0") Integer offset) {
        
@@ -49,6 +54,10 @@ public class ScreenshotWS {
                 bcp47Tags, 
                 screenshotName, 
                 status,
+                name,
+                source,
+                target,
+                searchType,
                 limit,
                 offset);
     }

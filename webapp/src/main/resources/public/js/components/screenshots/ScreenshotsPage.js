@@ -189,13 +189,19 @@ let ScreenshotsPage = React.createClass({
                         <div className="pull-left">
                             <AltContainer store={ScreenshotsRepositoryStore}>
                                 <RepositoryDropdown onSelectedRepositoryIdsChanged={(selectedRepositoryIds) => {
-                        ScreenshotsRepositoryActions.changeSelectedRepositoryIds(selectedRepositoryIds);
-                        ScreenshotsPageActions.performSearch();
+                            ScreenshotsHistoryActions.disableHistoryUpdate();
+                            ScreenshotsPaginatorActions.changeCurrentPageNumber(1);
+                            ScreenshotsRepositoryActions.changeSelectedRepositoryIds(selectedRepositoryIds);
+                            ScreenshotsHistoryActions.enableHistoryUpdate();
+                            ScreenshotsPageActions.performSearch();
                                                     }} />
                             </AltContainer>
                             <AltContainer store={ScreenshotsLocaleStore}>
                                 <LocalesDropdown onSelectedBcp47TagsChanged={(selectedBcp47Tags) => {
-                            ScreenshotsLocaleActions.changeSelectedBcp47Tags(selectedBcp47Tags);
+                            ScreenshotsHistoryActions.disableHistoryUpdate();
+                            ScreenshotsPaginatorActions.changeCurrentPageNumber(1);
+                            ScreenshotsLocaleActions.changeSelectedBcp47Tags(selectedBcp47Tags);                           
+                            ScreenshotsHistoryActions.enableHistoryUpdate();
                             ScreenshotsPageActions.performSearch();
                                                  }} />
                             </AltContainer>
@@ -203,10 +209,25 @@ let ScreenshotsPage = React.createClass({
                 
                         <AltContainer store={ScreenshotsSearchTextStore}>
                             <ScreenshotsSearchText
-                                onSearchAttributeChanged={ScreenshotsSearchTextActions.changeSearchAttribute}
-                                onSearchTypeChanged={ScreenshotsSearchTextActions.changeSearchType }
+                                onSearchAttributeChanged={(attribute) => {
+                                    ScreenshotsHistoryActions.disableHistoryUpdate();
+                                    ScreenshotsPaginatorActions.changeCurrentPageNumber(1);
+                                    ScreenshotsSearchTextActions.changeSearchAttribute(attribute);
+                                    ScreenshotsHistoryActions.enableHistoryUpdate();
+                                    ScreenshotsPageActions.performSearch();
+                                    }}
+                                onSearchTypeChanged={(type) => {
+                                    ScreenshotsHistoryActions.disableHistoryUpdate();
+                                    ScreenshotsPaginatorActions.changeCurrentPageNumber(1);
+                                    ScreenshotsSearchTextActions.changeSearchType(type);
+                                    ScreenshotsHistoryActions.enableHistoryUpdate();
+                                    ScreenshotsPageActions.performSearch();
+                                    }}
                                 onSearchTextChanged={ScreenshotsSearchTextActions.changeSearchText }
-                                onPerformSearch={ScreenshotsPageActions.performSearch}
+                                onPerformSearch={() => {
+                                    ScreenshotsPaginatorActions.changeCurrentPageNumber(1);
+                                    ScreenshotsPageActions.performSearch();
+                                }}
                                 />
                         </AltContainer>
                 
@@ -216,7 +237,10 @@ let ScreenshotsPage = React.createClass({
                                 return props.status !== nextState.status
                                       }} >
                             <StatusDropdown onStatusChanged={(statusAndIdx) => {
+                                    ScreenshotsHistoryActions.disableHistoryUpdate();
+                                    ScreenshotsPaginatorActions.changeCurrentPageNumber(1);
                                     ScreenshotsSearchTextActions.changeStatus(statusAndIdx);
+                                    ScreenshotsHistoryActions.enableHistoryUpdate();
                                     ScreenshotsPageActions.performSearch();
                                             }} />
                         </AltContainer>
@@ -248,9 +272,9 @@ let ScreenshotsPage = React.createClass({
                             onScreenshotClicked={this.onScreenshotClicked} 
                             onLocaleClick={ (locale) => {
                                                 ScreenshotsHistoryActions.disableHistoryUpdate();
-                                                ScreenshotsSearchTextActions.changeSearchText(null);
-                                                ScreenshotsLocaleActions.changeSelectedBcp47Tags(locale);
                                                 ScreenshotsPaginatorActions.changeCurrentPageNumber(1);
+                                                ScreenshotsSearchTextActions.changeSearchText("");
+                                                ScreenshotsLocaleActions.changeSelectedBcp47Tags(locale);
                                                 ScreenshotsHistoryActions.enableHistoryUpdate();
                                                 ScreenshotsPageActions.performSearch();
                             }}
@@ -267,7 +291,6 @@ let ScreenshotsPage = React.createClass({
                                                     ScreenshotsPageActions.performSearch();
                             }}
                             onStatusGlyphClick={(screenshotIdx) => {
-                                                        console.log("onStatusGlyphClick", screenshotIdx);
                                                         ScreenshotsReviewModalActions.openWithScreenshot(screenshotIdx);
                             }}
                             onStatusChanged={ScreenshotActions.changeStatus}

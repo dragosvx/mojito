@@ -12,13 +12,8 @@ class Paginator extends React.Component {
      * @return {JSX}
      */
     render() {
-
-        const divStyle = {
-            float: "right"
-        };
-
         return (this.props.shown &&
-                <div style={divStyle}>
+                <div className="screenshot-paginator">
                     <Button bsSize="small" disabled={this.props.disabled || this.props.currentPageNumber === 1}
                             onClick={this.props.onPreviousPageClicked}><span
                             className="glyphicon glyphicon-chevron-left"></span></Button>

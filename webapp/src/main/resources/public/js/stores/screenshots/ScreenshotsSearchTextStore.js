@@ -13,8 +13,8 @@ class ScreenshotsSearchTextStore {
     }
 
     setDefaultState() {
-        this.searchAttribute = ScreenshotsSearchTextStore.SEARCH_ATTRIBUTES_SCREENSHOT;
-        this.searchType = SearchParamsStore.SEARCH_TYPES.ILIKE;
+        this.searchAttribute = SearchParamsStore.SEARCH_ATTRIBUTES.TARGET;
+        this.searchType = SearchParamsStore.SEARCH_TYPES.CONTAINS;
         this.searchText = "";
         this.isSpinnerShown = false;
         this.status = StatusCommonTypes.ALL;
@@ -25,6 +25,7 @@ class ScreenshotsSearchTextStore {
     }
     
     changeSearchAttribute(searchAttribute) {
+        console.log("change search attribute")
         this.searchAttribute = searchAttribute;
     }
 

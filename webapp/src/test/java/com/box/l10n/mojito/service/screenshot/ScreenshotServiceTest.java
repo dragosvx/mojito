@@ -135,7 +135,8 @@ public class ScreenshotServiceTest extends ServiceTestBase {
     @Test
     public void testSearchScreenshotsByRepository() throws RepositoryNameAlreadyUsedException {
         Repository repository = createScreenshotData();
-        List<Screenshot> searchScreenshots = screenshotService.searchScreenshots(null, null, null, null, 10, 0);
+        List<Screenshot> searchScreenshots = screenshotService.searchScreenshots(
+                Arrays.asList(repository.getId()), null, null, null, null, null, null, null, 10, 0);
         assertEquals("screen1", searchScreenshots.get(0).getName());
         assertEquals("screen3", searchScreenshots.get(1).getName());
         assertEquals("screen2", searchScreenshots.get(2).getName());
@@ -150,7 +151,7 @@ public class ScreenshotServiceTest extends ServiceTestBase {
         List<Screenshot> searchScreenshots = screenshotService.searchScreenshots(
                 Arrays.asList(repository.getId()),
                 Arrays.asList("fr-FR"),
-                null, null, 10, 0);
+                null, null, null, null, null, null, 10, 0);
 
         assertEquals("screen1", searchScreenshots.get(0).getName());
         assertEquals("screen2", searchScreenshots.get(1).getName());
@@ -159,7 +160,7 @@ public class ScreenshotServiceTest extends ServiceTestBase {
         searchScreenshots = screenshotService.searchScreenshots(
                 Arrays.asList(repository.getId()),
                 Arrays.asList("ko-KR"),
-                null, null, 10, 0);
+                null, null, null, null, null, null, 10, 0);
 
         assertEquals("screen3", searchScreenshots.get(0).getName());
         assertEquals(1, searchScreenshots.size());
@@ -174,7 +175,7 @@ public class ScreenshotServiceTest extends ServiceTestBase {
         List<Screenshot> searchScreenshots = screenshotService.searchScreenshots(
                 Arrays.asList(repository.getId()),
                 null,
-                "screen2", null, 10, 0);
+                "screen2", null, null, null, null, null, 10, 0);
 
         assertEquals("screen2", searchScreenshots.get(0).getName());
         assertEquals(1, searchScreenshots.size());
@@ -188,21 +189,24 @@ public class ScreenshotServiceTest extends ServiceTestBase {
 
         List<Screenshot> searchScreenshots = screenshotService.searchScreenshots(
                 Arrays.asList(repository.getId()),
-                null, null, Screenshot.Status.NEEDS_REVIEW, 10, 0);
+                null, null, Screenshot.Status.NEEDS_REVIEW, 
+                null, null, null, null,10, 0);
 
         assertEquals("screen3", searchScreenshots.get(0).getName());
         assertEquals(1, searchScreenshots.size());
 
         searchScreenshots = screenshotService.searchScreenshots(
                 Arrays.asList(repository.getId()),
-                null, null, Screenshot.Status.REJECTED, 10, 0);
+                null, null, Screenshot.Status.REJECTED, 
+                null, null, null, null, 10, 0);
 
         assertEquals("screen1", searchScreenshots.get(0).getName());
         assertEquals(1, searchScreenshots.size());
 
         searchScreenshots = screenshotService.searchScreenshots(
                 Arrays.asList(repository.getId()),
-                null, null, Screenshot.Status.ACCEPTED, 10, 0);
+                null, null, Screenshot.Status.ACCEPTED, 
+                null, null, null, null, 10, 0);
 
         assertEquals("screen2", searchScreenshots.get(0).getName());
         assertEquals(1, searchScreenshots.size());
@@ -215,7 +219,8 @@ public class ScreenshotServiceTest extends ServiceTestBase {
         Repository repository = createScreenshotData();
 
         List<Screenshot> searchScreenshots = screenshotService.searchScreenshots(
-                Arrays.asList(repository.getId()), null, null, null, 1, 1);
+                Arrays.asList(repository.getId()), null, null, null, 
+                null, null, null, null, 1, 1);
 
         assertEquals("screen3", searchScreenshots.get(0).getName());
         assertEquals(1, searchScreenshots.size());
@@ -229,7 +234,8 @@ public class ScreenshotServiceTest extends ServiceTestBase {
         createScreenshotData(repository);
 
         List<Screenshot> searchScreenshots = screenshotService.searchScreenshots(
-                Arrays.asList(repository.getId()), null, null, null, 10, 0);
+                Arrays.asList(repository.getId()), null, null, null, 
+                null, null, null, null, 10, 0);
 
         assertEquals(3, searchScreenshots.size());
         

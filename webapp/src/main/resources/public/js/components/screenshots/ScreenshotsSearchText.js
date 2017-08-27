@@ -120,12 +120,12 @@ let ScreenshotsSearchText = React.createClass({
                 <FormGroup>
                     <InputGroup>
                         <InputGroup.Button>{this.renderDropdown()}</InputGroup.Button>
-                        <FormControl type='text' value={this.props.searchText ? this.props.searchText : ""}
+                        <FormControl type='text' value={this.props.searchText}
                                      onChange={(e) => this.props.onSearchTextChanged(e.target.value)}
                                      placeholder={this.props.intl.formatMessage({ id: "search.placeholder" })}
                                      onKeyDown={this.onKeyDownOnSearchText}/>
                         <InputGroup>
-                            {this.props.isSpinnerShown ? (<span className="glyphicon glyphicon-refresh spinning" />) : ""}
+                            {this.props.isSpinnerShown && (<span className="glyphicon glyphicon-refresh spinning" />)}
                         </InputGroup>
                         <InputGroup.Button>{this.renderSearchButton()}</InputGroup.Button>
                     </InputGroup>

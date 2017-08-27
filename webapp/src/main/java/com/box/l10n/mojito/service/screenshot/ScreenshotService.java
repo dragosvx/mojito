@@ -8,6 +8,7 @@ import com.box.l10n.mojito.entity.Screenshot;
 import com.box.l10n.mojito.entity.ScreenshotRun;
 import com.box.l10n.mojito.entity.ScreenshotRun_;
 import com.box.l10n.mojito.entity.ScreenshotTextUnit;
+import com.box.l10n.mojito.entity.ScreenshotTextUnit_;
 import com.box.l10n.mojito.entity.Screenshot_;
 import com.box.l10n.mojito.service.NormalizationUtils;
 import com.box.l10n.mojito.service.tm.search.SearchType;
@@ -23,7 +24,10 @@ import java.util.Objects;
 import javax.persistence.EntityManager;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Expression;
 import javax.persistence.criteria.Join;
+import javax.persistence.criteria.JoinType;
+import javax.persistence.criteria.Path;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import org.slf4j.Logger;
@@ -93,14 +97,14 @@ public class ScreenshotService {
         for (Screenshot screenshot : screenshotsToAdd) {
             completeAndAddScreenshotToRun(screenshot, screenshotRun);
         }
-        
+
         logger.debug("Update the last successful screenshot import");
         updateLastSucessfulScreenshotRun(repository, screenshotRun);
 
         // because of the create/update case the list of screenshot is not valid
         // anymore, set null to avoid confusion
         screenshotRun.setScreenshots(null);
-        
+
         return screenshotRun;
     }
 
@@ -129,13 +133,13 @@ public class ScreenshotService {
     void completeAndAddScreenshotToRun(
             Screenshot screenshot,
             ScreenshotRun screenshotRun) {
-        
+
         screenshot.setScreenshotRun(screenshotRun);
 
         for (ScreenshotTextUnit screenshotTextUnit : screenshot.getScreenshotTextUnits()) {
             completeScreenshotTextUnit(screenshotTextUnit, screenshot);
         }
-        
+
         Screenshot existingScreenshot = screenshotRepository.findByScreenshotRunAndNameAndLocale(
                 screenshotRun,
                 screenshot.getName(),
@@ -145,10 +149,10 @@ public class ScreenshotService {
             logger.debug("Screenshot exists for locale: {} and name: {}, delete it ",
                     existingScreenshot.getLocale() == null ? null : existingScreenshot.getLocale().getBcp47Tag(),
                     existingScreenshot.getName());
-            
+
             screenshotRepository.delete(existingScreenshot);
-        } 
-        
+        }
+
         logger.debug("Create new screenshot");
         screenshotRepository.save(screenshot);
     }
@@ -165,7 +169,7 @@ public class ScreenshotService {
      */
     void completeScreenshotTextUnit(ScreenshotTextUnit screenshotTextUnit, Screenshot screenshot) {
         screenshotTextUnit.setScreenshot(screenshot);
-        
+
         List<TextUnitDTO> textUnitDTOs = getTextUnitsForScreenshotTextUnitRenderedTarget(
                 screenshot.getScreenshotRun().getRepository().getId(),
                 screenshotTextUnit.getRenderedTarget(),
@@ -203,6 +207,10 @@ public class ScreenshotService {
      * @param bcp47Tags can be null (no filter), filter by locale tags
      * @param screenshotName can be null (no filter), filter by screenshot name
      * @param status can be null (no filter), filter by status
+     * @param name
+     * @param source
+     * @param target
+     * @param searchType
      * @param limit number max of results to be returned
      * @param offset offset of the first result to be returned
      * @return the screenshots that matche the search parameters
@@ -213,6 +221,10 @@ public class ScreenshotService {
             List<String> bcp47Tags,
             String screenshotName,
             Screenshot.Status status,
+            String name,
+            String source,
+            String target,
+            SearchType searchType,
             int limit,
             int offset) {
 
@@ -222,6 +234,7 @@ public class ScreenshotService {
         Join<Screenshot, ScreenshotRun> screenshotRunJoin = screenshot.join(Screenshot_.screenshotRun);
         Join<ScreenshotRun, Repository> repositoryJoin = screenshotRunJoin.join(ScreenshotRun_.repository);
         Join<Screenshot, Locale> localeJoin = screenshot.join(Screenshot_.locale);
+        Join<Screenshot, ScreenshotTextUnit> screenshotTextUnits = screenshot.join(Screenshot_.screenshotTextUnits, JoinType.LEFT);
 
         Predicate conjunction = builder.conjunction();
 
@@ -245,10 +258,70 @@ public class ScreenshotService {
             conjunction.getExpressions().add(predicate);
         }
 
+        if (!Strings.isNullOrEmpty(name)) {
+            Predicate predicate = getPredicateForSearchType(
+                    searchType,
+                    builder,
+                    screenshotTextUnits.get(ScreenshotTextUnit_.name),
+                    name);
+            conjunction.getExpressions().add(predicate);
+        }
+
+        if (!Strings.isNullOrEmpty(source)) {
+            Predicate predicate = getPredicateForSearchType(
+                    searchType,
+                    builder,
+                    screenshotTextUnits.get(ScreenshotTextUnit_.source),
+                    source);
+            conjunction.getExpressions().add(predicate);
+        }
+
+        if (!Strings.isNullOrEmpty(target)) {
+            // for now search either on the target or the rendered target
+            Predicate targetPredicate = getPredicateForSearchType(
+                    searchType,
+                    builder,
+                    screenshotTextUnits.get(ScreenshotTextUnit_.target),
+                    target);
+
+            Predicate renderedTargetPredicate = getPredicateForSearchType(
+                    searchType,
+                    builder,
+                    screenshotTextUnits.get(ScreenshotTextUnit_.renderedTarget),
+                    target);
+
+            conjunction.getExpressions().add(builder.or(targetPredicate, renderedTargetPredicate));
+        }
+
         query.where(conjunction);
 
-        List<Screenshot> screenshots = em.createQuery(query.select(screenshot)).setFirstResult(offset).setMaxResults(limit).getResultList();
+        List<Screenshot> screenshots = em.createQuery(query.distinct(true).select(screenshot)).setFirstResult(offset).setMaxResults(limit).getResultList();
         return screenshots;
+    }
+
+    private Predicate getPredicateForSearchType(
+            SearchType searchType,
+            CriteriaBuilder builder,
+            Path<String> searchPath,
+            String searchValue) {
+
+        Predicate predicate = null;
+        searchValue = NormalizationUtils.normalize(searchValue);
+
+        if (searchType == null || SearchType.CONTAINS.equals(searchType)) {
+            predicate = builder.like(searchPath, escapeAndWrapValueForContains(searchValue));
+        } else if (SearchType.ILIKE.equals(searchType)) {
+            predicate = builder.like(builder.lower(searchPath), searchValue.toLowerCase());
+        } else {
+            predicate = builder.equal(searchPath, searchValue);
+        }
+
+        return predicate;
+    }
+
+    String escapeAndWrapValueForContains(String value) {
+        String escaped = value.replace("%", "\\%").replace("_", "\\_");
+        return "%" + escaped + "%";
     }
 
     /**

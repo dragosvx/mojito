@@ -112,7 +112,7 @@ class ScreenshotsHistoryStore {
         ScreenshotsLocaleActions.changeSelectedBcp47Tags(bcp47Tags);
 
         if (!searchAttribute) {
-            searchAttribute = ScreenshotsSearchTextStore.SEARCH_ATTRIBUTES_SCREENSHOT;
+            searchAttribute = SearchParamsStore.SEARCH_ATTRIBUTES.TARGET;
         }
         ScreenshotsSearchTextActions.changeSearchAttribute(searchAttribute);
 
@@ -122,7 +122,7 @@ class ScreenshotsHistoryStore {
         ScreenshotsSearchTextActions.changeSearchText(searchText);
 
         if (!searchType) {
-            searchType = SearchParamsStore.SEARCH_TYPES.ILIKE;
+            searchType = SearchParamsStore.SEARCH_TYPES.CONTAINS;
         }
         ScreenshotsSearchTextActions.changeSearchType(searchType);
 
