@@ -1,0 +1,26 @@
+FROM java:8
+
+RUN apt-get update && apt-get install -y locales
+
+RUN adduser web --home /home/web --shell /bin/bash --disabled-password --gecos ""
+
+ENV LANG en_US.UTF-8
+RUN locale-gen $LANG
+
+RUN mkdir /var/mojito-webapp
+
+COPY webapp/target/mojito-webapp-*.jar /var/mojito-webapp/mojito-webapp.jar
+
+RUN sh -c 'touch /var/mojito-webapp/mojito-webapp.jar'
+
+RUN chown -R web:web /var/mojito-webapp
+RUN chown -R web:web /var/mojito-webapp/*
+RUN ls -lsat /var/mojito-webapp
+
+WORKDIR /var/mojito-webapp
+
+USER web
+
+EXPOSE 8080
+
+CMD ["java", "-jar", "./var/mojito-webapp/mojito-webapp.jar", "-XX:MaxPermSize=128m", "-Xmx1024m", "-Dspring.config.location=/var/mojito-webapp", "-Djava.security.egd=file:/dev/./urandom"]
