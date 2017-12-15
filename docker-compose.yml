@@ -13,9 +13,6 @@ services:
     command:
       - --character-set-server=utf8mb4
       - --collation-server=utf8mb4_bin
-    networks:
-      net:
-        ipv4_address: 172.31.1.1
   web:
     build:
       context: .
@@ -37,14 +34,5 @@ services:
       "spring.datasource.driverClassName" : "com.mysql.jdbc.Driver",
       "spring.datasource.validation-query" : "SELECT 1"
       }'
-    networks:
-      net:
-        ipv4_address: 172.31.1.2
 volumes:
   mysql_data:
-networks:
-  net:
-    ipam:
-      driver: default
-      config:
-        - subnet: 172.31.0.0/16
