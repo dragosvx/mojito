@@ -72,6 +72,7 @@ let Header = React.createClass({
                     <LinkContainer to="/workbench"><NavItem><FormattedMessage id="header.demo2" /></NavItem></LinkContainer>
                     <LinkContainer to="/workbench"><NavItem><FormattedMessage id="header.demo3" /></NavItem></LinkContainer>
                     <LinkContainer to="/workbench"><NavItem><FormattedMessage id="header.summary" /></NavItem></LinkContainer>
+                    <LinkContainer to="/workbench"><NavItem><FormattedMessage id="header.description" /></NavItem></LinkContainer>
                 </Nav>
                 <Nav pullRight={true}>
                     <NavDropdown title={USERNAME} id="user-menu">
