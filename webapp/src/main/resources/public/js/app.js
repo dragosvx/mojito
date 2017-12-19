@@ -32,8 +32,9 @@ import it from 'react-intl/locale-data/it';
 import ja from 'react-intl/locale-data/ja';
 import pt from 'react-intl/locale-data/pt';
 import zh from 'react-intl/locale-data/zh';
+import nl from 'react-intl/locale-data/nl';
 import tr from 'react-intl/locale-data/tr';
-addLocaleData([...en, ...fr, ...be, ...ko, ...ru, ...de, ...es, ...it, ...ja, ...pt, ...zh, ...tr]);
+addLocaleData([...en, ...fr, ...be, ...ko, ...ru, ...de, ...es, ...it, ...ja, ...pt, ...zh, ...tr, ...nl]);
 
 __webpack_public_path__ = CONTEXT_PATH + "/";
 

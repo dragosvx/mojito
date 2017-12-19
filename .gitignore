@@ -19,3 +19,7 @@ npm-debug.log
 *.releaseBackup
 release.properties
 **/nb-configuration.xml
+/docker.log
+/application.yaml
+/application.pid
+/.data/
