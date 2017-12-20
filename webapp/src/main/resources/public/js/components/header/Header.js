@@ -70,8 +70,8 @@ let Header = React.createClass({
                     <LinkContainer to="/workbench"><NavItem><FormattedMessage id="header.workbench" /></NavItem></LinkContainer>
                     <LinkContainer to="/project-requests"><NavItem><FormattedMessage id="header.projectRequests" /></NavItem></LinkContainer>
                     <LinkContainer to="/workbench"><NavItem><FormattedMessage id="header.similarities" /></NavItem></LinkContainer>
-                    <LinkContainer to="/workbench"><NavItem><FormattedMessage id="header.translations" /></NavItem></LinkContainer>
-                    <LinkContainer to="/workbench"><NavItem><FormattedMessage id="header.words" /></NavItem></LinkContainer>
+                    <LinkContainer to="/workbench"><NavItem><FormattedMessage id="header.flower" /></NavItem></LinkContainer>
+                    <LinkContainer to="/workbench"><NavItem><FormattedMessage id="header.flow" /></NavItem></LinkContainer>
 
                 </Nav>
                 <Nav pullRight={true}>
