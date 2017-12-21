@@ -1,0 +1,1 @@
+web: java -jar webapp/target/mojito-webapp*.jar -Djava.security.egd=file:/dev/./urandom
