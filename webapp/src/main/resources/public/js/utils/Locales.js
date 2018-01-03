@@ -76,7 +76,8 @@ class Locales {
             'ru',
             'zh-Hans',
             'zh-Hant',
-            'tr'
+            'tr',
+            'eo'
         ];
     }
 
