@@ -17,6 +17,7 @@
     <properties>
         <start-class>com.box.l10n.mojito.Application</start-class>
         <frontend.maven.plugin.version>1.0</frontend.maven.plugin.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <node.version>v6.2.2</node.version>
         <npm.version>3.10.3</npm.version>
     </properties>
