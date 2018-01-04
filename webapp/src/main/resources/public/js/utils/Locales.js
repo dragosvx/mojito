@@ -46,6 +46,9 @@ Cldr.load(require('cldr-data/main/zh-Hant/territories.json'));
 Cldr.load(require('cldr-data/main/tr/languages.json'));
 Cldr.load(require('cldr-data/main/tr/territories.json'));
 
+Cldr.load(require('cldr-data/main/zu/languages.json'));
+Cldr.load(require('cldr-data/main/zu/territories.json'));
+
 class Locales {
 
     constructor() {
@@ -77,7 +80,7 @@ class Locales {
             'zh-Hans',
             'zh-Hant',
             'tr',
-            'eo'
+            'zu'
         ];
     }
 
