@@ -9,7 +9,20 @@
             CSRF_TOKEN = '{{csrfToken}}';
             USERNAME = '{{username}}';
             CONTEXT_PATH = '{{contextPath}}';
+
+            if (LOCALE === 'zu') {
+                var _jipt = [];
+                _jipt.push(['project', 'mojitox']);
+
+                document.write('<script type="text/javascript" src="//cdn.crowdin.com/jipt/jipt.js"><\/script>');
+            }
         </script>
+
+        <!--<script type="text/javascript">-->
+            <!--var _jipt = [];-->
+            <!--_jipt.push(['project', 'mojitox']);-->
+        <!--</script>-->
+        <!--<script type="text/javascript" src="//cdn.crowdin.com/jipt/jipt.js"></script>-->
     </head>
 
     <body>

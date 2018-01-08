@@ -1,1 +1,1 @@
-web: java $JAVA_OPTS -Dserver.port=$PORT -jar webapp/target/mojito-webapp*.jar -Djava.security.egd=file:/dev/./urandom
+web: java $JAVA_OPTS -Dserver.port=9100 -jar webapp/target/mojito-webapp*.jar -Djava.security.egd=file:/dev/./urandom
