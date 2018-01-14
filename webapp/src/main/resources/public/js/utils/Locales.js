@@ -49,6 +49,12 @@ Cldr.load(require('cldr-data/main/tr/territories.json'));
 Cldr.load(require('cldr-data/main/zu/languages.json'));
 Cldr.load(require('cldr-data/main/zu/territories.json'));
 
+Cldr.load(require('cldr-data/main/sk/languages.json'));
+Cldr.load(require('cldr-data/main/sk/territories.json'));
+
+Cldr.load(require('cldr-data/main/nl/languages.json'));
+Cldr.load(require('cldr-data/main/nl/territories.json'));
+
 class Locales {
 
     constructor() {
@@ -69,6 +75,7 @@ class Locales {
         return [
             'be',
             'de',
+            'nl',
             'en',
             'es',
             'fr',
@@ -79,6 +86,7 @@ class Locales {
             'ru',
             'zh-Hans',
             'zh-Hant',
+            'sk',
             'tr',
             'zu'
         ];
