@@ -23,3 +23,4 @@ release.properties
 /application.yaml
 /application.pid
 /.data/
+/app/
